@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "GYMI-Android"
-include ':app'
+include(":app")
