@@ -1,5 +1,3 @@
-import org.apache.tools.ant.taskdefs.optional.depend.Depend
-
 plugins {
     id(ProjectProperties.Gradle.APPLICATION)
     id(ProjectProperties.Gradle.KOTLIN)
