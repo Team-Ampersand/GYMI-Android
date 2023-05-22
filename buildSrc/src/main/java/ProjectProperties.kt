@@ -32,6 +32,7 @@ object ProjectProperties {
     }
 
     object NameSpace {
+        const val DESIGN_SYSTEM = "com.mpersand.design_system"
         const val PRESENTATION = "com.mpersand.presentation"
         const val DOMAIN = "com.mpersand.domain"
         const val DATA = "com.mpersand.data"
