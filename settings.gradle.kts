@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "GYMI-Android"
 include(":app")
 include(":data")
+include(":domain")
