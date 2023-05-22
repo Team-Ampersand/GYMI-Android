@@ -8,7 +8,7 @@ android {
     compileSdk = ProjectProperties.Versions.COMPILE_SDK
 
     defaultConfig {
-        compileSdk = ProjectProperties.Versions.MIN_SDK
+        minSdk = ProjectProperties.Versions.MIN_SDK
 
         testInstrumentationRunner = ProjectProperties.Test.TEST_RUNNER
         consumerProguardFiles(ProjectProperties.Files.CONSUMER_PROGUARD)
