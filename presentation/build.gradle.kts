@@ -1,20 +1,17 @@
 plugins {
-    id(ProjectProperties.Gradle.APPLICATION)
+    id(ProjectProperties.Gradle.LIBRARY)
     id(ProjectProperties.Gradle.KOTLIN)
 }
 
 android {
-    namespace = ProjectProperties.NameSpace.APP
+    namespace = ProjectProperties.NameSpace.PRESENTATION
     compileSdk = ProjectProperties.Versions.COMPILE_SDK
 
     defaultConfig {
-        applicationId = ProjectProperties.Id.APPLICATION_ID
         minSdk = ProjectProperties.Versions.MIN_SDK
-        targetSdk = ProjectProperties.Versions.TARGET_SDK
-        versionCode = ProjectProperties.Versions.VERSION_CODE
-        versionName  = ProjectProperties.Versions.VERSION_NAME
 
         testInstrumentationRunner = ProjectProperties.Test.TEST_RUNNER
+        consumerProguardFiles(ProjectProperties.Files.CONSUMER_PROGUARD)
     }
 
     buildTypes {
@@ -33,9 +30,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":presentation"))
     implementation(project(":domain"))
-    implementation(project(":data"))
 
     implementation(Dependency.AndroidX.CORE_KTX)
     implementation(Dependency.AndroidX.APPCOMPAT)
