@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id(ProjectProperties.Gradle.APPLICATION)
     id(ProjectProperties.Gradle.KOTLIN)
@@ -14,15 +17,24 @@ android {
         minSdk = ProjectProperties.Versions.MIN_SDK
         targetSdk = ProjectProperties.Versions.TARGET_SDK
         versionCode = ProjectProperties.Versions.VERSION_CODE
-        versionName  = ProjectProperties.Versions.VERSION_NAME
+        versionName = ProjectProperties.Versions.VERSION_NAME
 
         testInstrumentationRunner = ProjectProperties.Test.TEST_RUNNER
+
+        buildConfigField(
+            "String",
+            "BASE_URL",
+            getApiKey("BASE_URL")
+        )
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile(ProjectProperties.Files.DEFAULT_PROGUARD), ProjectProperties.Files.PROGUARD)
+            proguardFiles(
+                getDefaultProguardFile(ProjectProperties.Files.DEFAULT_PROGUARD),
+                ProjectProperties.Files.PROGUARD
+            )
         }
     }
     compileOptions {
@@ -53,4 +65,11 @@ dependencies {
     implementation(Dependency.Libraries.RETROFIT_CONVERTER_GSON)
     implementation(Dependency.Libraries.OKHTTP)
     implementation(Dependency.Libraries.OKHTTP_LOGGING_INTERCEPTOR)
+}
+
+fun getApiKey(propertyKey: String): String {
+    val propFile = rootProject.file("./local.properties")
+    val properties = Properties()
+    properties.load(FileInputStream(propFile))
+    return properties.getProperty(propertyKey)
 }
