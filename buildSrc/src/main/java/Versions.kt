@@ -16,4 +16,9 @@ object Versions {
     const val COMPOSE_MATERIAL = "1.2.0"
 
     const val LIFECYCLE = "2.3.1"
+
+    const val HILT = "2.44"
+
+    const val RETROFIT = "2.9.0"
+    const val OKHTTP = "4.10.0"
 }
