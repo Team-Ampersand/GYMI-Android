@@ -39,4 +39,11 @@ class Dependency {
     object MSG {
         const val GAUTH = "com.github.GSM-MSG:GAuth-Signin-Android:${Versions.GAUTH}"
     }
+
+    object Orbit {
+        const val CORE = "org.orbit-mvi:orbit-core:${Versions.ORBIT}"
+        const val VIEWMODEL = "org.orbit-mvi:orbit-viewmodel:${Versions.ORBIT}"
+        const val COMPOSE = "org.orbit-mvi:orbit-compose:${Versions.ORBIT}"
+        const val TEST = "org.orbit-mvi:orbit-test:${Versions.ORBIT}"
+    }
 }
