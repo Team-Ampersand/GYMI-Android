@@ -53,4 +53,9 @@ dependencies {
 
     implementation(Dependency.Google.HILT)
     kapt(Dependency.Google.HILT_COMPILER)
+
+    implementation(Dependency.Orbit.CORE)
+    implementation(Dependency.Orbit.VIEWMODEL)
+    implementation(Dependency.Orbit.COMPOSE)
+    implementation(Dependency.Orbit.TEST)
 }
