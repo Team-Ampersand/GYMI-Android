@@ -7,4 +7,11 @@ interface AuthRepository {
     suspend fun gAuthLogin(gAuthLoginRequestModel: GauthLoginRequestModel): GauthLoginResponseModel
 
     suspend fun gAuthLogout()
+
+    suspend fun saveToken(
+        accessToken: String,
+        refreshToken: String,
+        accessExp: String,
+        refreshExp: String
+    )
 }
