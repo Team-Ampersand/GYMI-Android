@@ -1,10 +1,10 @@
 package com.mpersand.domain.repository
 
-import com.mpersand.domain.model.auth.request.GauthLoginRequestData
-import com.mpersand.domain.model.auth.response.GauthLoginResponseData
+import com.mpersand.domain.model.auth.request.GauthLoginRequestModel
+import com.mpersand.domain.model.auth.response.GauthLoginResponseModel
 
 interface AuthRepository {
-    suspend fun gAuthLogin(gAuthLoginRequestData: GauthLoginRequestData): GauthLoginResponseData
+    suspend fun gAuthLogin(gAuthLoginRequestModel: GauthLoginRequestModel): GauthLoginResponseModel
 
     suspend fun gAuthLogout()
 }
