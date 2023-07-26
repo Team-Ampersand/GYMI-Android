@@ -44,7 +44,7 @@ class RequestInterceptor @Inject constructor(
         if (currentTime.isAfter(accessTokenExp)) {
             val client = OkHttpClient()
             val reissueRequest = Request.Builder()
-                .url("${BuildConfig.BASE_URL}auth/reissue")
+                .url("${BuildConfig.BASE_URL}auth")
                 .patch("".toRequestBody("application/json".toMediaType()))
                 .addHeader(
                     name = "Refresh-Token",
