@@ -3,6 +3,7 @@ class Dependency {
         const val CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
         const val APPCOMPAT = "androidx.appcompat:appcompat:${Versions.APPCOMPAT}"
         const val LIFECYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE}"
+        const val VIEWMODEl = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.VIEWMODEL}"
     }
 
     object Test {

@@ -58,4 +58,6 @@ dependencies {
     implementation(Dependency.Orbit.VIEWMODEL)
     implementation(Dependency.Orbit.COMPOSE)
     implementation(Dependency.Orbit.TEST)
+
+    implementation(Dependency.AndroidX.VIEWMODEl)
 }
