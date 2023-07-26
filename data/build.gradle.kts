@@ -55,7 +55,7 @@ dependencies {
     implementation(Dependency.Libraries.OKHTTP)
     implementation(Dependency.Libraries.OKHTTP_LOGGING_INTERCEPTOR)
 
-    implementation("com.google.code.gson:gson:2.8.9")
+    implementation(Dependency.Google.GSON)
     implementation(Dependency.AndroidX.DATASTORE)
 }
 

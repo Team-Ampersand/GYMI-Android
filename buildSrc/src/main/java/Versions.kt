@@ -26,4 +26,6 @@ object Versions {
     const val GAUTH = "v1.0.7"
 
     const val ORBIT = "6.0.0"
+
+    const val GSON = "2.8.9"
 }
