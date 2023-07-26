@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GauthLogoutUseCase @Inject constructor(
     private val authRepository: AuthRepository
 ) {
-    suspend operator fun invoke() = authRepository.gAuthLogout()
+    suspend operator fun invoke() = kotlin.runCatching { authRepository.gAuthLogout() }
 }
