@@ -2,6 +2,7 @@ package com.mpersand.gymi_android.module
 
 import android.util.Log
 import com.mpersand.data.remote.network.AuthApi
+import com.mpersand.data.remote.util.RequestInterceptor
 import com.mpersand.gymi_android.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -26,12 +27,16 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkhttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkhttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        requestInterceptor: RequestInterceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(requestInterceptor)
             .build()
     }
 
