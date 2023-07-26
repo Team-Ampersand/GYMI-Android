@@ -1,5 +1,6 @@
 package com.mpersand.gymi_android.module
 
+import com.mpersand.data.remote.network.AuthApi
 import com.mpersand.gymi_android.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -42,4 +43,8 @@ object NetworkModule {
     fun provideConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
     }
+
+    @Provides
+    @Singleton
+    fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
 }
