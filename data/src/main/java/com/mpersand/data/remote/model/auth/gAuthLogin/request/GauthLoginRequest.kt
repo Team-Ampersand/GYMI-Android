@@ -4,10 +4,10 @@ import com.mpersand.domain.model.auth.request.GauthLoginRequestModel
 
 data class GauthLoginRequest(
     val code: String,
-    val token: String?
+    val deviceToken: String?
 )
 
 fun GauthLoginRequestModel.asGauthLoginRequest() = GauthLoginRequest(
     code = code,
-    token = token
+    deviceToken = deviceToken
 )
