@@ -63,7 +63,7 @@ class RequestInterceptor @Inject constructor(
                         refreshExp = token["refreshExp"].asString
                     )
                 }
-            } else  throw TokenExpiredException()
+            } else throw TokenExpiredException()
         }
         val accessToken = runBlocking { localDataSource.getAccessToken().first() }
         builder.addHeader("Authorization", "Bearer $accessToken")
