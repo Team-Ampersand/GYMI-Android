@@ -51,11 +51,10 @@ class RequestInterceptor @Inject constructor(
                     value = "Bearer $refreshToken"
                 )
                 .build()
-            val jsonParser = JsonParser()
             val response = client.newCall(reissueRequest).execute()
 
             if (response.isSuccessful) {
-                val token = jsonParser.parse(response.body!!.string()) as JsonObject
+                val token = JsonParser.parseString(response.body!!.string()) as JsonObject
                 runBlocking {
                     localDataSource.saveToken(
                         accessToken = token["accessToken"].asString,
