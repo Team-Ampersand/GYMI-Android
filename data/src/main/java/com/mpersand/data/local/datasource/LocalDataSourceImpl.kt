@@ -32,11 +32,11 @@ class LocalDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAccessToken(): Flow<String> = context.dataStore.data.map { it[ACCESS_TOKEN] ?: "" }
+    override fun getAccessToken(): Flow<String> = context.dataStore.data.map { it[ACCESS_TOKEN] ?: "" }
 
-    override suspend fun getRefreshToken(): Flow<String> = context.dataStore.data.map { it[REFRESH_TOKEN] ?: "" }
+    override fun getRefreshToken(): Flow<String> = context.dataStore.data.map { it[REFRESH_TOKEN] ?: "" }
 
-    override suspend fun getAccessTokenExp(): Flow<String> = context.dataStore.data.map { it[ACCESS_EXP] ?: "" }
+    override fun getAccessTokenExp(): Flow<String> = context.dataStore.data.map { it[ACCESS_EXP] ?: "" }
 
-    override suspend fun getRefreshTokenExp(): Flow<String> = context.dataStore.data.map { it[REFRESH_EXP] ?: "" }
+    override fun getRefreshTokenExp(): Flow<String> = context.dataStore.data.map { it[REFRESH_EXP] ?: "" }
 }

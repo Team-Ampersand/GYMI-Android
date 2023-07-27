@@ -10,11 +10,11 @@ interface LocalDataSource {
         refreshExp: String
     )
 
-    suspend fun getAccessToken(): Flow<String>
+    fun getAccessToken(): Flow<String>
 
-    suspend fun getRefreshToken(): Flow<String>
+    fun getRefreshToken(): Flow<String>
 
-    suspend fun getAccessTokenExp(): Flow<String>
+    fun getAccessTokenExp(): Flow<String>
 
-    suspend fun getRefreshTokenExp(): Flow<String>
+    fun getRefreshTokenExp(): Flow<String>
 }
