@@ -7,6 +7,7 @@ object Versions {
     const val APPCOMPAT = "1.6.1"
     const val GOOGLE_MATERIAL = "1.5.0"
     const val VIEWMODEL = "2.5.1"
+    const val DATASTORE = "1.0.0"
 
     const val JUNIT = "4.13.2"
     const val ANDROID_JUNIT = "1.1.5"
@@ -25,4 +26,6 @@ object Versions {
     const val GAUTH = "v1.0.7"
 
     const val ORBIT = "6.0.0"
+
+    const val GSON = "2.8.9"
 }

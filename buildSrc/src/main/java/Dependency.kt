@@ -4,6 +4,7 @@ class Dependency {
         const val APPCOMPAT = "androidx.appcompat:appcompat:${Versions.APPCOMPAT}"
         const val LIFECYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE}"
         const val VIEWMODEl = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.VIEWMODEL}"
+        const val DATASTORE = "androidx.datastore:datastore-preferences:${Versions.DATASTORE}"
     }
 
     object Test {
@@ -26,6 +27,7 @@ class Dependency {
         const val MATERIAL = "com.google.android.material:material:${Versions.GOOGLE_MATERIAL}"
         const val HILT = "com.google.dagger:hilt-android:${Versions.HILT}"
         const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
+        const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
     }
 
     object Libraries {
