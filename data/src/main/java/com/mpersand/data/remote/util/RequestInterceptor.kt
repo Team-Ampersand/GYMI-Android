@@ -21,7 +21,6 @@ import javax.inject.Inject
 class RequestInterceptor @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : Interceptor {
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val builder = request.newBuilder()
