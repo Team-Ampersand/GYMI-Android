@@ -28,4 +28,6 @@ object Versions {
     const val ORBIT = "6.0.0"
 
     const val GSON = "2.8.9"
+
+    const val GUS = "1.0.5"
 }
