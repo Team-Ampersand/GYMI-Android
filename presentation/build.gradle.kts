@@ -60,4 +60,6 @@ dependencies {
     implementation(Dependency.Orbit.TEST)
 
     implementation(Dependency.AndroidX.VIEWMODEl)
+
+    implementation(Dependency.Libraries.GUS)
 }
