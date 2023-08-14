@@ -29,5 +29,5 @@ object Versions {
 
     const val GSON = "2.8.9"
 
-    const val GUS = "1.0.5"
+    const val GUS = "1.1.0"
 }
