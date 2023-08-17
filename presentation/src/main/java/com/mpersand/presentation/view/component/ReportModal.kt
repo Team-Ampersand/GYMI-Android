@@ -174,7 +174,7 @@ fun ReportReasonDropdown(
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
-            repeat(reasons.size) {
+            reasons.forEach {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -182,11 +182,11 @@ fun ReportReasonDropdown(
                             interactionSource = remember { MutableInteractionSource() },
                             indication = rememberRipple(color = GYMITheme.colors.n4),
                         ) {
-                            reason = reasons[it]
+                            reason = it
                             expanded = false
                         }
                         .padding(horizontal = 12.dp, vertical = 6.dp),
-                    text = reasons[it],
+                    text = it,
                     style = GYMITheme.typography.body3,
                     color = GYMITheme.colors.n2
                 )
