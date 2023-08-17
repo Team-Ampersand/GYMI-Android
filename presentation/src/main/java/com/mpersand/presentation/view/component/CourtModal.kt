@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.mpersand.gymi_components.component.dialog.GYMIDialog
 import com.mpersand.gymi_components.theme.Black
@@ -86,7 +87,8 @@ fun CourtModal(
             Spacer(modifier = Modifier.height(5.dp))
             Text(
                 text = description,
-                style = GYMITheme.typography.body3
+                style = GYMITheme.typography.body3,
+                lineHeight = 22.sp
             )
             Button(
                 modifier = Modifier
