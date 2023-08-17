@@ -2,7 +2,6 @@ package com.mpersand.presentation.view.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -28,7 +27,6 @@ import com.mpersand.gymi_components.theme.IcEquipment
 import com.mpersand.gymi_components.theme.IcHome
 import com.mpersand.gymi_components.theme.IcReservation
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
