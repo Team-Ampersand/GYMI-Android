@@ -55,14 +55,65 @@ fun MainScreen(
                 style = GYMITypography.h4
             )
             Spacer(modifier = Modifier.height(10.dp))
-            repeat(4) {
-                GYMIBadmintonCourt(
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .weight(1f),
-                    isReserved = false
-                ) {}
-                Spacer(modifier = Modifier.height(2.dp))
+            when (dayOfWeek) {
+                "월", "수" -> {
+                    repeat(2) {
+                        Row(modifier = modifier.weight(1f)) {
+                            repeat(2) {
+                                GYMIBasketballCourt(
+                                    modifier = modifier
+                                        .fillMaxHeight()
+                                        .weight(1f)
+                                        .graphicsLayer {
+                                            if (it % 2 != 0) rotationY = 180f
+                                        },
+                                    isReserved = false
+                                ) {}
+                                Spacer(modifier = Modifier.width(2.dp))
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(2.dp))
+                    }
+                }
+
+                "화", "목" -> {
+                    repeat(4) {
+                        GYMIBadmintonCourt(
+                            modifier = modifier
+                                .fillMaxWidth()
+                                .weight(1f),
+                            isReserved = false
+                        ) {}
+                        Spacer(modifier = Modifier.height(2.dp))
+                    }
+                }
+
+                "금" -> {
+                    Row(modifier = modifier.weight(2f)) {
+                        repeat(2) {
+                            GYMIBasketballCourt(
+                                modifier = modifier
+                                    .fillMaxHeight()
+                                    .weight(1f)
+                                    .graphicsLayer {
+                                        if (it % 2 != 0) rotationY = 180f
+                                    },
+                                isReserved = false
+                            ) {}
+                            Spacer(modifier = Modifier.width(2.dp))
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(2.dp))
+                    repeat(2) {
+                        GYMIBadmintonCourt(
+                            modifier = modifier
+                                .fillMaxWidth()
+                                .weight(1f),
+                            isReserved = false
+                        ) {}
+                        Spacer(modifier = Modifier.height(2.dp))
+                    }
+                }
             }
 
             Spacer(modifier = Modifier.height(30.dp))
@@ -83,7 +134,7 @@ fun MainScreen(
 @Composable
 fun preview() {
     MainScreen(
-        dayOfWeek = "금",
+        dayOfWeek = "수",
         navigateToMain = {},
         navigateToNotice = {},
         navigateToProfile = {}
