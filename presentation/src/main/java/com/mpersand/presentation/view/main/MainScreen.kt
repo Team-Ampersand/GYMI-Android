@@ -2,18 +2,24 @@ package com.mpersand.presentation.view.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mpersand.gymi_components.component.court.GYMIBadmintonCourt
+import com.mpersand.gymi_components.component.court.GYMIBasketballCourt
 import com.mpersand.gymi_components.component.header.GYMIHeader
 import com.mpersand.gymi_components.component.navbar.GYMINavBar
 import com.mpersand.gymi_components.component.navbar.GYMINavItem
@@ -23,9 +29,11 @@ import com.mpersand.gymi_components.theme.IcEquipment
 import com.mpersand.gymi_components.theme.IcHome
 import com.mpersand.gymi_components.theme.IcReservation
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
+    dayOfWeek: String,
     navigateToMain: () -> Unit,
     navigateToNotice: () -> Unit,
     navigateToProfile: () -> Unit
@@ -56,11 +64,16 @@ fun MainScreen(
                 ) {}
                 Spacer(modifier = Modifier.height(2.dp))
             }
+
             Spacer(modifier = Modifier.height(30.dp))
             GYMINavBar {
-                GYMINavItem(selected = false, icon = { IcReservation(tint = LocalContentColor.current) }) {}
+                GYMINavItem(
+                    selected = false,
+                    icon = { IcReservation(tint = LocalContentColor.current) }) {}
                 GYMINavItem(selected = true, icon = { IcHome(tint = LocalContentColor.current) }) {}
-                GYMINavItem(selected = false, icon = { IcEquipment(tint = LocalContentColor.current) }) {}
+                GYMINavItem(
+                    selected = false,
+                    icon = { IcEquipment(tint = LocalContentColor.current) }) {}
             }
         }
     }
@@ -70,6 +83,7 @@ fun MainScreen(
 @Composable
 fun preview() {
     MainScreen(
+        dayOfWeek = "금",
         navigateToMain = {},
         navigateToNotice = {},
         navigateToProfile = {}
