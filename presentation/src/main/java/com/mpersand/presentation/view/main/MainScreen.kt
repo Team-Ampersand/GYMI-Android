@@ -13,6 +13,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
@@ -35,6 +39,8 @@ fun MainScreen(
     navigateToNotice: () -> Unit,
     navigateToProfile: () -> Unit
 ) {
+    var selected by remember { mutableStateOf(0) }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -114,14 +120,22 @@ fun MainScreen(
             }
 
             Spacer(modifier = Modifier.height(30.dp))
+            val navItems = listOf("reservation", "home", "equipment")
             GYMINavBar {
-                GYMINavItem(
-                    selected = false,
-                    icon = { IcReservation(tint = LocalContentColor.current) }) {}
-                GYMINavItem(selected = true, icon = { IcHome(tint = LocalContentColor.current) }) {}
-                GYMINavItem(
-                    selected = false,
-                    icon = { IcEquipment(tint = LocalContentColor.current) }) {}
+                repeat(3) {
+                    GYMINavItem(
+                        selected = selected == it,
+                        icon = {
+                            when (navItems[it]) {
+                                "reservation" -> IcReservation(tint = LocalContentColor.current)
+                                "home" -> IcHome(tint = LocalContentColor.current)
+                                "equipment" -> IcEquipment(tint = LocalContentColor.current)
+                            }
+                        }
+                    ) {
+                        selected = it
+                    }
+                }
             }
         }
     }
