@@ -84,10 +84,9 @@ fun EquipmentModal(
                     .padding(vertical = 30.dp),
                 text = buttonText,
                 style = GYMITheme.typography.subtitle3,
-                backgroundColor = buttonColor
-            ) {
-                onButtonClick()
-            }
+                backgroundColor = buttonColor,
+                onClick = onButtonClick
+            )
         }
     }
 }

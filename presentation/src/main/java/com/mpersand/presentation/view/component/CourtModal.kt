@@ -92,10 +92,9 @@ fun CourtModal(
                     .padding(vertical = 30.dp),
                 text = buttonText,
                 backgroundColor = buttonColor,
-                style = GYMITheme.typography.subtitle3
-            ) {
-                onButtonClick()
-            }
+                style = GYMITheme.typography.subtitle3,
+                onClick = onButtonClick
+            )
         }
     }
 }
