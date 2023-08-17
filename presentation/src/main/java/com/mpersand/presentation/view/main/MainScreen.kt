@@ -2,6 +2,7 @@ package com.mpersand.presentation.view.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -61,61 +62,14 @@ fun MainScreen(
             when (dayOfWeek) {
                 "월", "수" -> {
                     repeat(2) {
-                        Row(modifier = modifier.weight(1f)) {
-                            repeat(2) {
-                                GYMIBasketballCourt(
-                                    modifier = modifier
-                                        .fillMaxHeight()
-                                        .weight(1f)
-                                        .graphicsLayer {
-                                            if (it % 2 != 0) rotationY = 180f
-                                        },
-                                    isReserved = false
-                                ) {}
-                                Spacer(modifier = Modifier.width(2.dp))
-                            }
-                        }
-                        Spacer(modifier = Modifier.height(2.dp))
+                        GYMIBasketballHalfCourt(repeat = 2, weight = 1f)
                     }
                 }
-
-                "화", "목" -> {
-                    repeat(4) {
-                        GYMIBadmintonCourt(
-                            modifier = modifier
-                                .fillMaxWidth()
-                                .weight(1f),
-                            isReserved = false
-                        ) {}
-                        Spacer(modifier = Modifier.height(2.dp))
-                    }
-                }
-
+                "화", "목" -> { GYMIBadmintonHalfCourt(repeat = 4) }
                 "금" -> {
-                    Row(modifier = modifier.weight(2f)) {
-                        repeat(2) {
-                            GYMIBasketballCourt(
-                                modifier = modifier
-                                    .fillMaxHeight()
-                                    .weight(1f)
-                                    .graphicsLayer {
-                                        if (it % 2 != 0) rotationY = 180f
-                                    },
-                                isReserved = false
-                            ) {}
-                            Spacer(modifier = Modifier.width(2.dp))
-                        }
-                    }
+                    GYMIBasketballHalfCourt(repeat = 2, weight = 2f)
                     Spacer(modifier = Modifier.height(2.dp))
-                    repeat(2) {
-                        GYMIBadmintonCourt(
-                            modifier = modifier
-                                .fillMaxWidth()
-                                .weight(1f),
-                            isReserved = false
-                        ) {}
-                        Spacer(modifier = Modifier.height(2.dp))
-                    }
+                    GYMIBadmintonHalfCourt(repeat = 2)
                 }
             }
 
@@ -137,6 +91,44 @@ fun MainScreen(
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun ColumnScope.GYMIBadmintonHalfCourt(
+    modifier: Modifier = Modifier,
+    repeat: Int
+) {
+    repeat(repeat) {
+        GYMIBadmintonCourt(
+            modifier = modifier
+                .fillMaxWidth()
+                .weight(1f),
+            isReserved = false
+        ) {}
+        Spacer(modifier = Modifier.height(2.dp))
+    }
+}
+
+@Composable
+fun ColumnScope.GYMIBasketballHalfCourt(
+    modifier: Modifier = Modifier,
+    repeat: Int,
+    weight: Float
+) {
+    Row(modifier = modifier.weight(weight)) {
+        repeat(repeat) {
+            GYMIBasketballCourt(
+                modifier = modifier
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .graphicsLayer {
+                        if (it % 2 != 0) rotationY = 180f
+                    },
+                isReserved = false
+            ) {}
+            Spacer(modifier = Modifier.width(2.dp))
         }
     }
 }
