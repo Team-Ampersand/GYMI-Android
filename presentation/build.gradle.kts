@@ -62,4 +62,5 @@ dependencies {
     implementation(Dependency.AndroidX.VIEWMODEl)
 
     implementation(Dependency.Libraries.GUS)
+    implementation(Dependency.Libraries.COIL)
 }
