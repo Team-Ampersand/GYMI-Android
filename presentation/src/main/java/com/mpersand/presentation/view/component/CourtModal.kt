@@ -3,14 +3,10 @@ package com.mpersand.presentation.view.component
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -19,11 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.mpersand.gymi_components.component.button.GYMIButton
 import com.mpersand.gymi_components.component.dialog.GYMIDialog
 import com.mpersand.gymi_components.theme.Black
 import com.mpersand.gymi_components.theme.GYMITheme
 import com.mpersand.gymi_components.theme.IcXMark
-import com.mpersand.gymi_components.theme.White
 
 enum class CourtButtonType {
     Cancel, Report
@@ -90,20 +86,15 @@ fun CourtModal(
                 style = GYMITheme.typography.body3,
                 lineHeight = 22.sp
             )
-            Button(
+            GYMIButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 30.dp),
-                contentPadding = PaddingValues(vertical = 15.dp),
-                shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor),
-                onClick = onButtonClick
+                text = buttonText,
+                backgroundColor = buttonColor,
+                style = GYMITheme.typography.subtitle3
             ) {
-                Text(
-                    text = buttonText,
-                    style = GYMITheme.typography.subtitle3,
-                    color = White
-                )
+                onButtonClick()
             }
         }
     }
