@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.mpersand.gymi_components.component.button.GYMIButton
 import com.mpersand.gymi_components.component.dialog.GYMIDialog
-import com.mpersand.gymi_components.theme.Black
 import com.mpersand.gymi_components.theme.GYMITheme
 import com.mpersand.gymi_components.theme.IcXMark
 
@@ -52,12 +51,13 @@ fun EquipmentModal(
                 modifier = Modifier
                     .align(Alignment.End)
                     .clickable { onDismissRequest() },
-                tint = Black
+                tint = GYMITheme.colors.bw
             )
             Spacer(modifier = Modifier.height(25.dp))
             Text(
                 text = equipmentName,
-                style = GYMITheme.typography.subtitle2
+                style = GYMITheme.typography.subtitle2,
+                color = GYMITheme.colors.bw
             )
             Spacer(modifier = Modifier.height(8.dp))
             Image(
@@ -69,13 +69,14 @@ fun EquipmentModal(
             )
             Divider(
                 modifier = Modifier.padding(vertical = 16.dp),
-                color = Black,
+                color = GYMITheme.colors.bw,
                 thickness = 1.dp,
             )
             Text(
                 text = description,
                 style = GYMITheme.typography.body3,
-                lineHeight = 22.sp
+                lineHeight = 22.sp,
+                color = GYMITheme.colors.bw
             )
             Spacer(modifier = Modifier.height(35.dp))
             GYMIButton(

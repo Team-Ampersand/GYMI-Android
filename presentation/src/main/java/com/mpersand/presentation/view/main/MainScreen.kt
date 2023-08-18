@@ -56,7 +56,8 @@ fun MainScreen(
         Column(modifier = modifier.padding(horizontal = 20.dp)) {
             Text(
                 text = "코트 예약 현황",
-                style = GYMITypography.h4
+                style = GYMITypography.h4,
+                color = GYMITheme.colors.bw
             )
             Spacer(modifier = Modifier.height(10.dp))
             when (dayOfWeek) {
