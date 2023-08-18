@@ -1,4 +1,4 @@
-package com.mpersand.presentation.view.main
+package com.mpersand.presentation.view.reservation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -19,7 +19,6 @@ import com.mpersand.gymi_components.component.header.GYMIHeader
 import com.mpersand.gymi_components.component.navbar.GYMINavBar
 import com.mpersand.gymi_components.component.navbar.GYMINavItem
 import com.mpersand.gymi_components.theme.GYMITheme
-import com.mpersand.gymi_components.theme.GYMITypography
 import com.mpersand.gymi_components.theme.IcEquipment
 import com.mpersand.gymi_components.theme.IcHome
 import com.mpersand.gymi_components.theme.IcReservation
@@ -27,12 +26,9 @@ import com.mpersand.presentation.view.component.BadmintonHalfCourt
 import com.mpersand.presentation.view.component.BasketballHalfCourt
 
 @Composable
-fun MainScreen(
+fun ReservationScreen(
     modifier: Modifier = Modifier,
     dayOfWeek: String,
-    navigateToMain: () -> Unit,
-    navigateToNotice: () -> Unit,
-    navigateToProfile: () -> Unit
 ) {
     var selected by remember { mutableStateOf(0) }
 
@@ -42,15 +38,18 @@ fun MainScreen(
             .background(GYMITheme.colors.bg)
     ) {
         GYMIHeader(
-            navigateToMain = navigateToMain,
-            navigateToNotice = navigateToNotice,
-            navigationToProfile = navigateToProfile
+            navigateToMain = { /*TODO*/ },
+            navigateToNotice = { /*TODO*/ },
+            navigationToProfile = { /*TODO*/ }
         )
-        Spacer(modifier = Modifier.height(30.dp))
-        Column(modifier = modifier.padding(horizontal = 20.dp)) {
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 20.dp, vertical = 30.dp)
+                .weight(1f)
+        ) {
             Text(
-                text = "코트 예약 현황",
-                style = GYMITypography.h4,
+                text = "코트 예약 하기",
+                style = GYMITheme.typography.h4,
                 color = GYMITheme.colors.bw
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -60,34 +59,34 @@ fun MainScreen(
                         BasketballHalfCourt(modifier = Modifier.weight(1f)) {}
                     }
                 }
+
                 "화", "목" -> {
                     repeat(2) {
                         BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
                     }
                 }
+
                 "금" -> {
                     BasketballHalfCourt(modifier = Modifier.weight(2f)) {}
                     Spacer(modifier = Modifier.height(2.dp))
                     BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
                 }
             }
-
-            Spacer(modifier = Modifier.height(30.dp))
-            val navItems = listOf("reservation", "home", "equipment")
-            GYMINavBar {
-                repeat(3) {
-                    GYMINavItem(
-                        selected = selected == it,
-                        icon = {
-                            when (navItems[it]) {
-                                "reservation" -> IcReservation(tint = LocalContentColor.current)
-                                "home" -> IcHome(tint = LocalContentColor.current)
-                                "equipment" -> IcEquipment(tint = LocalContentColor.current)
-                            }
+        }
+        val navItems = listOf("reservation", "home", "equipment")
+        GYMINavBar {
+            repeat(3) {
+                GYMINavItem(
+                    selected = selected == it,
+                    icon = {
+                        when (navItems[it]) {
+                            "reservation" -> IcReservation(tint = LocalContentColor.current)
+                            "home" -> IcHome(tint = LocalContentColor.current)
+                            "equipment" -> IcEquipment(tint = LocalContentColor.current)
                         }
-                    ) {
-                        selected = it
                     }
+                ) {
+                    selected = it
                 }
             }
         }
