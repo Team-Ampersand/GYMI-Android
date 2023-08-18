@@ -53,7 +53,7 @@ fun ReportModal(
                 modifier = Modifier
                     .align(Alignment.End)
                     .clickable { onDismissRequest() },
-                tint = Black
+                tint = GYMITheme.colors.bw
             )
             Row(
                 modifier = Modifier.padding(top = 25.dp, bottom = 30.dp),
@@ -61,7 +61,8 @@ fun ReportModal(
             ) {
                 Text(
                     text = "신고하기",
-                    style = GYMITheme.typography.subtitle2
+                    style = GYMITheme.typography.subtitle2,
+                    color = GYMITheme.colors.bw
                 )
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(
@@ -72,7 +73,8 @@ fun ReportModal(
             }
             Text(
                 text = "신고사유",
-                style = GYMITheme.typography.subtitle3
+                style = GYMITheme.typography.subtitle3,
+                color = GYMITheme.colors.bw
             )
             Spacer(modifier = Modifier.height(7.dp))
             Box(modifier = Modifier.fillMaxWidth()) {
@@ -85,7 +87,8 @@ fun ReportModal(
             Spacer(modifier = Modifier.height(20.dp))
             Text(
                 text = "세부사항",
-                style = GYMITheme.typography.subtitle3
+                style = GYMITheme.typography.subtitle3,
+                color = GYMITheme.colors.bw
             )
             Spacer(modifier = Modifier.height(7.dp))
             GYMITextField(

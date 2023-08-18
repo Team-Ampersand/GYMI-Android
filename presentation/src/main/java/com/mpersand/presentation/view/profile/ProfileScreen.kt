@@ -56,7 +56,8 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
         Text(
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 30.dp),
             text = "내 프로필",
-            style = GYMITheme.typography.h4
+            style = GYMITheme.typography.h4,
+            color = GYMITheme.colors.bw
         )
         MyProfile(
             modifier = Modifier
@@ -122,12 +123,14 @@ fun MyProfile(
         Column {
             Text(
                 text = "3학년 2반 8번",
-                style = GYMITheme.typography.body1
+                style = GYMITheme.typography.body1,
+                color = GYMITheme.colors.bw
             )
             Text(
                 modifier = Modifier.padding(vertical = 10.dp),
                 text = "박성현",
-                style = GYMITheme.typography.body1
+                style = GYMITheme.typography.body1,
+                color = GYMITheme.colors.bw
             )
             Text(
                 text = "위반 사항 보기",
@@ -150,7 +153,8 @@ fun RentedEquipmentList(modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
             text = "빌린 기자재",
-            style = GYMITheme.typography.subtitle3
+            style = GYMITheme.typography.subtitle3,
+            color = GYMITheme.colors.bw
         )
         Spacer(modifier = Modifier.height(7.dp))
         LazyRow {
@@ -169,7 +173,8 @@ fun RentedCourt(modifier: Modifier = Modifier) {
     ) {
         Text(
             text = "빌린 코트",
-            style = GYMITheme.typography.subtitle3
+            style = GYMITheme.typography.subtitle3,
+            color = GYMITheme.colors.bw
         )
         Spacer(modifier = Modifier.width(5.dp))
         Text(
