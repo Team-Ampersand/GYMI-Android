@@ -30,9 +30,7 @@ import com.mpersand.gymi_components.theme.IcPlus
 import com.mpersand.gymi_components.theme.IcReservation
 
 @Composable
-fun NoticeListScreen(
-    modifier: Modifier = Modifier
-) {
+fun NoticeListScreen(modifier: Modifier = Modifier) {
     var selected by remember { mutableStateOf(4) }
     Scaffold(
         scaffoldState = rememberScaffoldState(),
