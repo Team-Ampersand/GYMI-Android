@@ -45,13 +45,13 @@ fun NoticeWriteScreen(
     modifier: Modifier = Modifier,
     writer: String,
     date: String,
-    imageUrl1: String = "",
-    imageUrl2: String = "",
+    imageUrlList: List<String>,
     navigationNotice: () -> Unit
 ) {
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
     var selected by remember { mutableStateOf(4) }
+    var isFirst by remember { mutableStateOf(true) }
 
     Scaffold(
         scaffoldState = rememberScaffoldState(),
@@ -145,76 +145,50 @@ fun NoticeWriteScreen(
                         .fillMaxWidth()
                         .height(150.dp)
                 ) {
-                    if (imageUrl1 == "") {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .weight(1f)
-                                .background(
-                                    color = GYMITheme.colors.n5,
-                                    shape = RoundedCornerShape(8.dp)
+                    imageUrlList.forEach { imageUrl ->
+                        if (imageUrl == "") {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .weight(1f)
+                                    .background(
+                                        color = GYMITheme.colors.n5,
+                                        shape = RoundedCornerShape(8.dp)
+                                    )
+                                    .clickable(
+                                        interactionSource = remember { MutableInteractionSource() },
+                                        indication = null
+                                    ) { },
+                                horizontalArrangement = Arrangement.Center,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = "클릭하여 이미지를 넣어주세요.",
+                                    style = GYMITheme.typography.body4,
+                                    color = GYMITheme.colors.bw
                                 )
-                                .clickable(
-                                    interactionSource = remember { MutableInteractionSource() },
-                                    indication = null
-                                ) { },
-                            horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = "클릭하여 이미지를 넣어주세요.",
-                                style = GYMITheme.typography.body4,
-                                color = GYMITheme.colors.bw
+                            }
+                            if (isFirst) {
+                                Spacer(Modifier.width(20.dp))
+                                isFirst = false
+                            }
+                        } else {
+                            Image(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .weight(1f)
+                                    .clickable(
+                                        interactionSource = remember { MutableInteractionSource() },
+                                        indication = null
+                                    ) { },
+                                painter = rememberAsyncImagePainter(model = imageUrl),
+                                contentDescription = "image"
                             )
+                            if (isFirst) {
+                                Spacer(Modifier.width(20.dp))
+                                isFirst = false
+                            }
                         }
-                    } else {
-                        Image(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .weight(1f)
-                                .clickable(
-                                    interactionSource = remember { MutableInteractionSource() },
-                                    indication = null
-                                ) { },
-                            painter = rememberAsyncImagePainter(model = imageUrl1),
-                            contentDescription = ""
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(20.dp))
-                    if (imageUrl2 == "") {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .weight(1f)
-                                .background(
-                                    color = GYMITheme.colors.n5,
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                .clickable(
-                                    interactionSource = remember { MutableInteractionSource() },
-                                    indication = null
-                                ) { },
-                            horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = "클릭하여 이미지를 넣어주세요.",
-                                style = GYMITheme.typography.body4,
-                                color = GYMITheme.colors.bw
-                            )
-                        }
-                    } else {
-                        Image(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .weight(1f)
-                                .clickable(
-                                    interactionSource = remember { MutableInteractionSource() },
-                                    indication = null
-                                ) { },
-                            painter = rememberAsyncImagePainter(model = imageUrl2),
-                            contentDescription = ""
-                        )
                     }
                 }
                 Spacer(modifier = Modifier.height(25.dp))
@@ -232,5 +206,6 @@ fun NoticeWriteScreen(
 @Preview
 @Composable
 fun preview() {
-    NoticeWriteScreen(writer = "체육선생님", date = "2023.08.21") {}
+    var imageUrlList = remember { mutableListOf("", "") }
+    NoticeWriteScreen(writer = "체육선생님", date = "2023.08.21", imageUrlList = imageUrlList) {}
 }
