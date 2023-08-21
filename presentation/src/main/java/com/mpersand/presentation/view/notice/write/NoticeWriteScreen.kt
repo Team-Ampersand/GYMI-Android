@@ -27,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.mpersand.gymi_components.component.button.GYMIButton
@@ -226,10 +225,4 @@ fun NoticeWriteScreen(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun preview() {
-    NoticeWriteScreen(writer = "체육선생님", date = "2023.08.21") {}
 }
