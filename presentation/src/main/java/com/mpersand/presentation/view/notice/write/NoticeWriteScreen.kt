@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.mpersand.gymi_components.component.button.GYMIButton
@@ -94,20 +95,21 @@ fun NoticeWriteScreen(
                 Spacer(modifier = Modifier.height(20.dp))
                 Row(
                     modifier = Modifier
+                        .fillMaxWidth()
                         .height(45.dp)
                         .background(
                             color = GYMITheme.colors.n5,
                             shape = RoundedCornerShape(8.dp)
                         )
                         .padding(horizontal = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
                         text = "작성자 : $writer",
                         style = GYMITheme.typography.h5,
                         color = GYMITheme.colors.bw
                     )
-                    Spacer(modifier = Modifier.weight(1f))
                     Text(
                         text = date,
                         style = GYMITheme.typography.body3,
@@ -225,4 +227,10 @@ fun NoticeWriteScreen(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun preview() {
+    NoticeWriteScreen(writer = "체육선생님", date = "2023.08.21") {}
 }
