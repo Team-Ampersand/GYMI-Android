@@ -2,6 +2,7 @@ package com.mpersand.presentation.view.equipment
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mpersand.gymi_components.component.card.GYMICard
 import com.mpersand.gymi_components.component.header.GYMIHeader
@@ -83,7 +85,11 @@ fun EquipmentScreen(modifier: Modifier = Modifier) {
                     color = GYMITheme.colors.bw
                 )
                 IcFilter(
-                    modifier = Modifier.clickable {  },
+                    modifier = Modifier.clickable(
+                        interactionSource = MutableInteractionSource(),
+                        indication = null,
+                        onClick = {}
+                    ),
                     tint = GYMITheme.colors.bw
                 )
             }
@@ -98,4 +104,10 @@ fun EquipmentScreen(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.weight(1f))
         }
     }
+}
+
+@Preview
+@Composable
+fun EquipmentScreenPrev() {
+    EquipmentScreen()
 }
