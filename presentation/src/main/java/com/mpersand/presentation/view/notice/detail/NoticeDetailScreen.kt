@@ -98,7 +98,7 @@ fun NoticeDetailScreen(
                             .clickable(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
-                            ) { navigationNotice() },
+                            ) {  },
                         tint = GYMITheme.colors.bw
                     )
                     Spacer(modifier = Modifier.width(20.dp))
@@ -108,7 +108,7 @@ fun NoticeDetailScreen(
                             .clickable(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
-                            ) { navigationNotice() },
+                            ) {  },
                         tint = GYMITheme.colors.error
                     )
                 }
