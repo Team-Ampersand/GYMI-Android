@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Scaffold
@@ -50,7 +49,6 @@ fun NoticeWriteScreen(
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
     var selected by remember { mutableStateOf(4) }
-    var isFirst by remember { mutableStateOf(true) }
 
     Scaffold(
         scaffoldState = rememberScaffoldState(),
@@ -142,7 +140,8 @@ fun NoticeWriteScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(150.dp)
+                        .height(150.dp),
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
                     imageUrlList.forEach { imageUrl ->
                         if (imageUrl == "") {
@@ -167,10 +166,6 @@ fun NoticeWriteScreen(
                                     color = GYMITheme.colors.bw
                                 )
                             }
-                            if (isFirst) {
-                                Spacer(Modifier.width(20.dp))
-                                isFirst = false
-                            }
                         } else {
                             Image(
                                 modifier = Modifier
@@ -183,10 +178,6 @@ fun NoticeWriteScreen(
                                 painter = rememberAsyncImagePainter(model = imageUrl),
                                 contentDescription = "image"
                             )
-                            if (isFirst) {
-                                Spacer(Modifier.width(20.dp))
-                                isFirst = false
-                            }
                         }
                     }
                 }
