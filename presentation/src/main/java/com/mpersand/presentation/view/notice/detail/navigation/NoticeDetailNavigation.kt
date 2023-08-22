@@ -11,8 +11,8 @@ fun NavController.navigateToNoticeDetail() {
     this.navigate(noticeDetailRoute)
 }
 
-fun NavGraphBuilder.noticeDetailScreen(navigationNotice: () -> Unit) {
+fun NavGraphBuilder.noticeDetailScreen(navigateToNotice: () -> Unit) {
     composable(noticeDetailRoute) {
-        NoticeDetailScreen(navigateToNotice = navigationNotice)
+        NoticeDetailScreen(navigateToNotice = navigateToNotice)
     }
 }

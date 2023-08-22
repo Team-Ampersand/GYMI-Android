@@ -13,6 +13,6 @@ fun NavController.navigateToNoticeWrite() {
 
 fun NavGraphBuilder.noticeWriteScreen(navigateToNotice: () -> Unit) {
     composable(noticeWriteRoute) {
-        NoticeWriteScreen(navigationNotice = navigateToNotice)
+        NoticeWriteScreen(navigateToNotice = navigateToNotice)
     }
 }

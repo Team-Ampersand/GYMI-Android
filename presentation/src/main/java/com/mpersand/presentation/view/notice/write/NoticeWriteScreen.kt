@@ -44,7 +44,7 @@ fun NoticeWriteScreen(
     writer: String = "체육선생님",
     date: String = "2023.08.22",
     imageUrlList: List<String> = listOf(),
-    navigationNotice: () -> Unit
+    navigateToNotice: () -> Unit
 ) {
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
@@ -83,7 +83,7 @@ fun NoticeWriteScreen(
                         .clickable(
                             interactionSource = remember { MutableInteractionSource() },
                             indication = null
-                        ) { navigationNotice() },
+                        ) { navigateToNotice() },
                     tint = GYMITheme.colors.bw
                 )
                 Spacer(modifier = Modifier.height(20.dp))
@@ -184,7 +184,7 @@ fun NoticeWriteScreen(
                         .fillMaxWidth()
                         .height(50.dp),
                     text = "작성하기"
-                ) { navigationNotice() }
+                ) { navigateToNotice() }
                 Spacer(modifier = Modifier.height(15.dp))
             }
         }

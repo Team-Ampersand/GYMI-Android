@@ -47,7 +47,7 @@ fun NoticeEditScreen(
     title: String = "제목",
     content: String = "내용",
     imageUrlList: List<String> = mutableListOf(),
-    navigationNotice: () -> Unit
+    navigateToNotice: () -> Unit
 ) {
     var noticeTitle by remember { mutableStateOf(title) }
     var noticeContent by remember { mutableStateOf(content) }
@@ -89,7 +89,7 @@ fun NoticeEditScreen(
                         .clickable(
                             interactionSource = remember { MutableInteractionSource() },
                             indication = null
-                        ) { navigationNotice() },
+                        ) { navigateToNotice() },
                     tint = GYMITheme.colors.bw
                 )
                 Spacer(modifier = Modifier.height(20.dp))
@@ -192,7 +192,7 @@ fun NoticeEditScreen(
                         .fillMaxWidth()
                         .height(50.dp),
                     text = "수정하기"
-                ) { navigationNotice() }
+                ) { navigateToNotice() }
                 Spacer(modifier = Modifier.height(15.dp))
             }
         }
