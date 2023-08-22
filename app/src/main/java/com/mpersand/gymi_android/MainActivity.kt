@@ -3,6 +3,7 @@ package com.mpersand.gymi_android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FloatingActionButton
@@ -20,6 +21,7 @@ import com.mpersand.gymi_components.theme.IcEquipment
 import com.mpersand.gymi_components.theme.IcHome
 import com.mpersand.gymi_components.theme.IcPlus
 import com.mpersand.gymi_components.theme.IcReservation
+import com.mpersand.gymi_components.theme.Theme
 import com.mpersand.presentation.view.equipment.navigation.equipmentRoute
 import com.mpersand.presentation.view.login.navigation.loginRoute
 import com.mpersand.presentation.view.main.navigation.mainRoute
@@ -35,6 +37,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+            GYMITheme.gymiTheme = if (!isSystemInDarkTheme()) Theme.LIGHT else Theme.DARK
+
             GYMITheme {
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
