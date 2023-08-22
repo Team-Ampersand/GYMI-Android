@@ -1,10 +1,10 @@
 package com.mpersand.gymi_android
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.getValue
@@ -19,7 +19,6 @@ import com.mpersand.gymi_components.theme.IcEquipment
 import com.mpersand.gymi_components.theme.IcHome
 import com.mpersand.gymi_components.theme.IcReservation
 import com.mpersand.presentation.view.equipment.navigation.equipmentRoute
-import com.mpersand.presentation.view.login.navigation.loginRoute
 import com.mpersand.presentation.view.main.navigation.mainRoute
 import com.mpersand.presentation.view.main.navigation.navigateToMain
 import com.mpersand.presentation.view.notice.list.navigation.navigateToNoticeList
@@ -27,13 +26,14 @@ import com.mpersand.presentation.view.profile.navigation.navigateToProfile
 import com.mpersand.presentation.view.reservation.navigation.reservationRoute
 
 class MainActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             GYMITheme {
                 val navController = rememberNavController()
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -45,8 +45,6 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                     bottomBar = {
-                        val navBackStackEntry by navController.currentBackStackEntryAsState()
-                        val currentRoute = navBackStackEntry?.destination?.route
                         val destinations = listOf(reservationRoute, mainRoute, equipmentRoute)
 
                         if (currentRoute in destinations) {
@@ -70,10 +68,11 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     }
-                ) {
+                ) { paddingValues ->
                     GYMINavHost(
+                        modifier = Modifier.padding(paddingValues),
                         navController = navController,
-                        startDestination = loginRoute
+                        startDestination = mainRoute
                     )
                 }
             }
