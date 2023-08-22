@@ -61,15 +61,17 @@ fun ReservationScreen(
                 }
 
                 "화", "목" -> {
-                    repeat(2) {
+                    repeat(4) {
                         BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
                     }
                 }
 
                 "금" -> {
-                    BasketballHalfCourt(modifier = Modifier.weight(2f)) {}
-                    Spacer(modifier = Modifier.height(2.dp))
-                    BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
+                    BasketballHalfCourt(modifier = Modifier.weight(4f)) {}
+                    Spacer(modifier = Modifier.height(5.dp))
+                    repeat(2) {
+                        BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
+                    }
                 }
             }
         }

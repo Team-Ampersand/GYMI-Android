@@ -29,7 +29,7 @@ object Versions {
 
     const val GSON = "2.8.9"
 
-    const val GUS = "1.1.4"
+    const val GUS = "1.1.6"
 
     const val COIL = "2.4.0"
 }
