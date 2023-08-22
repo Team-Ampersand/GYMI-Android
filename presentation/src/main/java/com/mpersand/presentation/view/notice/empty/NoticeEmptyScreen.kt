@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mpersand.gymi_components.component.header.GYMIHeader
 import com.mpersand.gymi_components.component.navbar.GYMINavBar
@@ -32,7 +32,6 @@ import com.mpersand.gymi_components.theme.IcReservation
 @Composable
 fun NoticeEmptyScreen(modifier: Modifier = Modifier) {
     Scaffold(
-        scaffoldState = rememberScaffoldState(),
         topBar = {
             GYMIHeader(
                 navigateToMain = { },
@@ -81,4 +80,10 @@ fun NoticeEmptyScreen(modifier: Modifier = Modifier) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun NoticeEmptyScreenPreview() {
+    NoticeEmptyScreen()
 }
