@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mpersand.gymi_components.component.header.GYMIHeader
 import com.mpersand.gymi_components.component.item.GYMINoticeItem
@@ -32,7 +33,11 @@ import com.mpersand.gymi_components.theme.IcReservation
 @Composable
 fun NoticeListScreen(modifier: Modifier = Modifier) {
     var selected by remember { mutableStateOf(4) }
+
     Scaffold(
+        modifier = modifier
+            .fillMaxSize()
+            .background(GYMITheme.colors.bg),
         scaffoldState = rememberScaffoldState(),
         floatingActionButton = {
             FloatingActionButton(
@@ -41,6 +46,13 @@ fun NoticeListScreen(modifier: Modifier = Modifier) {
             ) { IcPlus(tint = GYMITheme.colors.bw) }
         },
         isFloatingActionButtonDocked = false,
+        topBar = {
+            GYMIHeader(
+                navigateToMain = {  },
+                navigateToNotice = {  },
+                navigationToProfile = {  }
+            )
+        },
         bottomBar = {
             val navItems = listOf("reservation", "home", "equipment")
             GYMINavBar {
@@ -61,13 +73,7 @@ fun NoticeListScreen(modifier: Modifier = Modifier) {
             }
         }
     ) { contentPadding ->
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .background(GYMITheme.colors.bg)
-                .padding(contentPadding)
-        ) {
-            GYMIHeader(navigateToMain = {}, navigateToNotice = {}, navigationToProfile = {})
+        Column(modifier = modifier.padding(contentPadding)) {
             Spacer(modifier = Modifier.height(35.dp))
             Column(modifier = modifier.padding(horizontal = 20.dp)) {
                 Text(
@@ -83,10 +89,16 @@ fun NoticeListScreen(modifier: Modifier = Modifier) {
                             content = "content content content",
                             date = "2023.09.0${it + 1}"
                         )
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(modifier = Modifier.height(15.dp))
                     }
                 }
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun NoticeListScreenPreview() {
+    NoticeListScreen()
 }

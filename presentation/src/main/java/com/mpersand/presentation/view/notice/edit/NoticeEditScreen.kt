@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.mpersand.gymi_components.component.button.GYMIButton
@@ -140,7 +141,7 @@ fun NoticeEditScreen(
                     maxLine = 10,
                     onValueChange = { noticeContent = it }
                 )
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(13.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -192,7 +193,21 @@ fun NoticeEditScreen(
                         .height(50.dp),
                     text = "수정하기"
                 ) { navigationNotice() }
+                Spacer(modifier = Modifier.height(15.dp))
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun NoticeEditScreenPreview() {
+    var sampleList = mutableListOf("", "")
+    NoticeEditScreen(
+        writer = "체육선생님",
+        date = "2023.08.22",
+        title = "제목",
+        content = "내용 내용 내용 내용",
+        imageUrlList = sampleList
+    ) {}
 }

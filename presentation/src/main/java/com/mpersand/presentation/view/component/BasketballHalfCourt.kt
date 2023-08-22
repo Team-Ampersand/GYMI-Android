@@ -29,7 +29,6 @@ fun ColumnScope.BasketballHalfCourt(
                 isReserved = isReserved,
                 onClick = onClick
             )
-            Spacer(modifier = Modifier.width(2.dp))
         }
     }
 }

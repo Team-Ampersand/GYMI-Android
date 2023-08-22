@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.mpersand.gymi_components.component.navbar.GYMINavBar
@@ -47,8 +48,6 @@ fun NoticeDetailScreen(
     imageUrlList: List<String>,
     navigationNotice: () -> Unit
 ) {
-    var title by remember { mutableStateOf("") }
-    var content by remember { mutableStateOf("") }
     var selected by remember { mutableStateOf(4) }
 
     Scaffold(
@@ -98,7 +97,7 @@ fun NoticeDetailScreen(
                             .clickable(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
-                            ) {  },
+                            ) { },
                         tint = GYMITheme.colors.bw
                     )
                     Spacer(modifier = Modifier.width(20.dp))
@@ -108,7 +107,7 @@ fun NoticeDetailScreen(
                             .clickable(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
-                            ) {  },
+                            ) { },
                         tint = GYMITheme.colors.error
                     )
                 }
@@ -170,7 +169,7 @@ fun NoticeDetailScreen(
                         color = GYMITheme.colors.bw
                     )
                 }
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(13.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -215,7 +214,19 @@ fun NoticeDetailScreen(
                         }
                     }
                 }
+                Spacer(modifier = Modifier.height(15.dp))
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun NoticeDetailScreenPreview() {
+    var sampleList = mutableListOf("", "")
+    NoticeDetailScreen(
+        writer = "체육선생님",
+        date = "2023.08.22",
+        imageUrlList = sampleList
+    ) {}
 }

@@ -5,10 +5,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -22,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mpersand.gymi_components.component.card.GYMICard
 import com.mpersand.gymi_components.component.header.GYMIHeader
@@ -92,7 +95,11 @@ fun EquipmentScreen(modifier: Modifier = Modifier) {
                     tint = GYMITheme.colors.bw
                 )
             }
-            LazyVerticalGrid(columns = GridCells.Fixed(2)) {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                contentPadding = PaddingValues(bottom = 15.dp),
+                verticalArrangement = Arrangement.spacedBy(15.dp)
+            ) {
                 items(10) {
                     GYMICard(
                         imageUrl = "",
@@ -103,4 +110,10 @@ fun EquipmentScreen(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.weight(1f))
         }
     }
+}
+
+@Preview
+@Composable
+fun EquipmentScreenPreview() {
+    EquipmentScreen()
 }
