@@ -59,6 +59,7 @@ dependencies {
 
     implementation(Dependency.AndroidX.CORE_KTX)
     implementation(Dependency.AndroidX.APPCOMPAT)
+    implementation(Dependency.AndroidX.NAVIGATION)
     implementation(Dependency.Compose.COMPOSE)
     implementation(Dependency.Compose.COMPOSE_TOOLING)
     implementation(Dependency.Compose.COMPOSE_MATERIAL)
