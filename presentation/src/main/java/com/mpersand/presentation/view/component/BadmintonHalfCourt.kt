@@ -23,7 +23,6 @@ fun ColumnScope.BadmintonHalfCourt(
                 isReserved = isReserved,
                 onClick = onClick
             )
-//            Spacer(modifier = Modifier.height(2.dp))
         } else {
             GYMIBadmintonCourt(
                 modifier = modifier
