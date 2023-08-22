@@ -1,12 +1,10 @@
 package com.mpersand.presentation.view.profile
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,14 +14,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
-import androidx.compose.material.LocalContentColor
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,92 +24,51 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.mpersand.gymi_components.component.button.GYMIButton
 import com.mpersand.gymi_components.component.card.GYMICard
-import com.mpersand.gymi_components.component.header.GYMIHeader
-import com.mpersand.gymi_components.component.navbar.GYMINavBar
-import com.mpersand.gymi_components.component.navbar.GYMINavItem
 import com.mpersand.gymi_components.theme.GYMITheme
-import com.mpersand.gymi_components.theme.IcEquipment
-import com.mpersand.gymi_components.theme.IcHome
-import com.mpersand.gymi_components.theme.IcReservation
 
 @Composable
 fun ProfileScreen(modifier: Modifier = Modifier) {
-    var selected by remember { mutableStateOf(0) }
+    Column(modifier = modifier) {
+        Text(
+            modifier = Modifier.padding(horizontal = 20.dp, vertical = 30.dp),
+            text = "내 프로필",
+            style = GYMITheme.typography.h4,
+            color = GYMITheme.colors.bw
+        )
+        MyProfile(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp),
+            imageUrl = ""
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        Divider(
+            color = GYMITheme.colors.n3,
+            thickness = 1.dp
+        )
+        Spacer(modifier = modifier.weight(1f))
+        RentedEquipmentList(modifier = Modifier.padding(horizontal = 20.dp))
+        Spacer(modifier = modifier.weight(1f))
+        RentedCourt(modifier = Modifier.padding(horizontal = 20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
+        Divider(
+            modifier = Modifier.padding(vertical = 20.dp),
+            color = GYMITheme.colors.n3,
+            thickness = 1.dp
+        )
+        Spacer(modifier = modifier.weight(1f))
+        GYMIButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp),
+            text = "로그아웃",
+            style = GYMITheme.typography.body2,
+            backgroundColor = GYMITheme.colors.error,
+            contentPadding = 16.dp,
+        ) {
 
-    Scaffold(
-        modifier = modifier
-            .fillMaxSize()
-            .background(GYMITheme.colors.bg),
-        topBar = {
-            GYMIHeader(
-                navigateToMain = {  },
-                navigateToNotice = {  },
-                navigationToProfile = {  }
-            )
-        },
-        bottomBar = {
-            val navItems = listOf("reservation", "home", "equipment")
-
-            GYMINavBar {
-                repeat(3) {
-                    GYMINavItem(
-                        selected = selected == it,
-                        icon = {
-                            when (navItems[it]) {
-                                "reservation" -> IcReservation(tint = LocalContentColor.current)
-                                "home" -> IcHome(tint = LocalContentColor.current)
-                                "equipment" -> IcEquipment(tint = LocalContentColor.current)
-                            }
-                        }
-                    ) {
-                        selected = it
-                    }
-                }
-            }
         }
-    ) { paddingValues ->
-        Column(modifier = Modifier.padding(paddingValues)) {
-            Text(
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 30.dp),
-                text = "내 프로필",
-                style = GYMITheme.typography.h4,
-                color = GYMITheme.colors.bw
-            )
-            MyProfile(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
-                imageUrl = ""
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            Divider(
-                color = GYMITheme.colors.n3,
-                thickness = 1.dp
-            )
-            Spacer(modifier = modifier.weight(1f))
-            RentedEquipmentList(modifier = Modifier.padding(horizontal = 20.dp))
-            Spacer(modifier = modifier.weight(1f))
-            RentedCourt(modifier = Modifier.padding(horizontal = 20.dp))
-            Spacer(modifier = Modifier.height(10.dp))
-            Divider(
-                modifier = Modifier.padding(vertical = 20.dp),
-                color = GYMITheme.colors.n3,
-                thickness = 1.dp
-            )
-            Spacer(modifier = modifier.weight(1f))
-            GYMIButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
-                text = "로그아웃",
-                style = GYMITheme.typography.body2,
-                backgroundColor = GYMITheme.colors.error,
-                contentPadding = 16.dp,
-            ) {
-
-            }
-            Spacer(modifier = modifier.height(15.dp))
-        }
+        Spacer(modifier = modifier.height(15.dp))
     }
 }
 

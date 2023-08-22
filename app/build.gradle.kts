@@ -44,6 +44,12 @@ android {
     kotlinOptions {
         jvmTarget = ProjectProperties.Versions.JVM_TARGET
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.6"
+    }
 }
 
 dependencies {
@@ -53,6 +59,11 @@ dependencies {
 
     implementation(Dependency.AndroidX.CORE_KTX)
     implementation(Dependency.AndroidX.APPCOMPAT)
+    implementation(Dependency.AndroidX.NAVIGATION)
+    implementation(Dependency.Compose.COMPOSE)
+    implementation(Dependency.Compose.COMPOSE_TOOLING)
+    implementation(Dependency.Compose.COMPOSE_MATERIAL)
+    implementation(Dependency.Compose.COMPOSE_PREVIEW)
     implementation(Dependency.Google.MATERIAL)
     testImplementation(Dependency.Test.JUNIT)
     androidTestImplementation(Dependency.Test.ANDROID_JUNIT)
@@ -61,6 +72,7 @@ dependencies {
     implementation(Dependency.Google.HILT)
     kapt(Dependency.Google.HILT_COMPILER)
 
+    implementation(Dependency.Libraries.GUS)
     implementation(Dependency.Libraries.RETROFIT)
     implementation(Dependency.Libraries.RETROFIT_CONVERTER_GSON)
     implementation(Dependency.Libraries.OKHTTP)
