@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import com.mpersand.gymi_components.component.court.GYMIBadmintonCourt
 
@@ -16,11 +17,22 @@ fun ColumnScope.BadmintonHalfCourt(
     onClick: () -> Unit
 ) {
     repeat(2) {
-        GYMIBadmintonCourt(
-            modifier = modifier.fillMaxWidth(),
-            isReserved = isReserved,
-            onClick = onClick
-        )
-        Spacer(modifier = Modifier.height(2.dp))
+        if (it == 0) {
+            GYMIBadmintonCourt(
+                modifier = modifier.fillMaxWidth(),
+                isReserved = isReserved,
+                onClick = onClick
+            )
+            Spacer(modifier = Modifier.height(2.dp))
+        } else {
+            GYMIBadmintonCourt(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .graphicsLayer { rotationX = 180f },
+                isReserved = isReserved,
+                onClick = onClick
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+        }
     }
 }
