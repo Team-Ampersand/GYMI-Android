@@ -21,6 +21,7 @@ import com.mpersand.gymi_components.theme.IcHome
 import com.mpersand.gymi_components.theme.IcPlus
 import com.mpersand.gymi_components.theme.IcReservation
 import com.mpersand.presentation.view.equipment.navigation.equipmentRoute
+import com.mpersand.presentation.view.login.navigation.loginRoute
 import com.mpersand.presentation.view.main.navigation.mainRoute
 import com.mpersand.presentation.view.main.navigation.navigateToMain
 import com.mpersand.presentation.view.notice.list.navigation.navigateToNoticeList
@@ -86,7 +87,7 @@ class MainActivity : ComponentActivity() {
                     GYMINavHost(
                         modifier = Modifier.padding(paddingValues),
                         navController = navController,
-                        startDestination = mainRoute
+                        startDestination = loginRoute
                     )
                 }
             }
