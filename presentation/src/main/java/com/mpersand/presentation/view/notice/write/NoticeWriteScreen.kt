@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.mpersand.gymi_components.component.button.GYMIButton
@@ -51,7 +52,9 @@ fun NoticeWriteScreen(
     var selected by remember { mutableStateOf(4) }
 
     Scaffold(
-        scaffoldState = rememberScaffoldState(),
+        modifier = modifier
+            .fillMaxSize()
+            .background(GYMITheme.colors.bg),
         bottomBar = {
             val navItems = listOf("reservation", "home", "equipment")
             GYMINavBar {
@@ -73,12 +76,7 @@ fun NoticeWriteScreen(
         }
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {
-            Column(
-                modifier = modifier
-                    .fillMaxSize()
-                    .background(GYMITheme.colors.bg)
-                    .padding(horizontal = 20.dp)
-            ) {
+            Column(modifier = modifier.padding(horizontal = 20.dp)) {
                 Spacer(modifier = Modifier.height(13.dp))
                 IcBackArrow(
                     modifier = Modifier
@@ -136,7 +134,7 @@ fun NoticeWriteScreen(
                     horizontalPadding = 0.dp,
                     onValueChange = { content = it }
                 )
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(13.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -188,7 +186,19 @@ fun NoticeWriteScreen(
                         .height(50.dp),
                     text = "작성하기"
                 ) { navigationNotice() }
+                Spacer(modifier = Modifier.height(15.dp))
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun NoticeWriteScreenPreview() {
+    var sampleList = mutableListOf("", "")
+    NoticeWriteScreen(
+        writer = "체육선생님",
+        date = "2023.08.22",
+        imageUrlList = sampleList
+    ) {}
 }
