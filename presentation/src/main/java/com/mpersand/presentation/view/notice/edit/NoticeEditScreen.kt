@@ -47,7 +47,6 @@ fun NoticeEditScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(GYMITheme.colors.bg)
             .padding(horizontal = 20.dp)
     ) {
         Spacer(modifier = Modifier.height(13.dp))

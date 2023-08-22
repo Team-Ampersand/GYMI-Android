@@ -3,6 +3,7 @@ package com.mpersand.gymi_android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -91,9 +92,11 @@ class MainActivity : ComponentActivity() {
                     }
                 ) { paddingValues ->
                     GYMINavHost(
-                        modifier = Modifier.padding(paddingValues),
+                        modifier = Modifier
+                            .padding(paddingValues)
+                            .background(GYMITheme.colors.bg),
                         navController = navController,
-                        startDestination = loginRoute
+                        startDestination = mainRoute
                     )
                 }
             }
