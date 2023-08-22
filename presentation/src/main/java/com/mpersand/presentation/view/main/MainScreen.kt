@@ -32,10 +32,10 @@ import com.mpersand.presentation.view.component.BasketballHalfCourt
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    dayOfWeek: String,
-    navigateToMain: () -> Unit,
-    navigateToNotice: () -> Unit,
-    navigateToProfile: () -> Unit
+    dayOfWeek: String = "금",
+    navigateToMain: () -> Unit = {},
+    navigateToNotice: () -> Unit = {},
+    navigateToProfile: () -> Unit = {}
 ) {
     var selected by remember { mutableStateOf(0) }
 

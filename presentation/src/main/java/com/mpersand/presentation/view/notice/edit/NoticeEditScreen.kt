@@ -42,11 +42,11 @@ import com.mpersand.gymi_components.theme.IcReservation
 @Composable
 fun NoticeEditScreen(
     modifier: Modifier = Modifier,
-    writer: String,
-    date: String,
-    title: String,
-    content: String,
-    imageUrlList: List<String>,
+    writer: String = "체육선생님",
+    date: String = "2023.08.22",
+    title: String = "제목",
+    content: String = "내용",
+    imageUrlList: List<String> = mutableListOf(),
     navigationNotice: () -> Unit
 ) {
     var noticeTitle by remember { mutableStateOf(title) }

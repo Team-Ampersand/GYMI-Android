@@ -43,10 +43,10 @@ import com.mpersand.gymi_components.theme.IcReservation
 @Composable
 fun NoticeDetailScreen(
     modifier: Modifier = Modifier,
-    writer: String,
-    date: String,
-    imageUrlList: List<String>,
-    navigationNotice: () -> Unit
+    writer: String = "체육선생님",
+    date: String = "2023.08.22",
+    imageUrlList: List<String> = mutableListOf(),
+    navigateToNotice: () -> Unit
 ) {
     var selected by remember { mutableStateOf(4) }
 
@@ -87,7 +87,7 @@ fun NoticeDetailScreen(
                             .clickable(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
-                            ) { navigationNotice() },
+                            ) { navigateToNotice() },
                         tint = GYMITheme.colors.bw
                     )
                     Spacer(modifier = Modifier.weight(1f))

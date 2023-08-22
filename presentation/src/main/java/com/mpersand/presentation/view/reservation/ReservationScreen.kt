@@ -31,7 +31,7 @@ import com.mpersand.presentation.view.component.BasketballHalfCourt
 @Composable
 fun ReservationScreen(
     modifier: Modifier = Modifier,
-    dayOfWeek: String,
+    dayOfWeek: String = "월",
 ) {
     var selected by remember { mutableStateOf(0) }
 

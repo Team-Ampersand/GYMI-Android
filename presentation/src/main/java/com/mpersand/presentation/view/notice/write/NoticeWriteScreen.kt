@@ -42,9 +42,9 @@ import com.mpersand.gymi_components.theme.IcReservation
 @Composable
 fun NoticeWriteScreen(
     modifier: Modifier = Modifier,
-    writer: String,
-    date: String,
-    imageUrlList: List<String>,
+    writer: String = "체육선생님",
+    date: String = "2023.08.22",
+    imageUrlList: List<String> = listOf(),
     navigationNotice: () -> Unit
 ) {
     var title by remember { mutableStateOf("") }
