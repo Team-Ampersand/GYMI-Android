@@ -5,6 +5,7 @@ class Dependency {
         const val LIFECYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE}"
         const val VIEWMODEl = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.VIEWMODEL}"
         const val DATASTORE = "androidx.datastore:datastore-preferences:${Versions.DATASTORE}"
+        const val NAVIGATION = "androidx.navigation:navigation-compose${Versions.NAVIGATION}"
     }
 
     object Test {
