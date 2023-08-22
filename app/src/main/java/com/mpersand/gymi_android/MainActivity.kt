@@ -43,11 +43,13 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     topBar = {
-                        GYMIHeader(
-                            navigateToMain = { navController.navigateToMain() },
-                            navigateToNotice = { navController.navigateToNoticeList() },
-                            navigationToProfile = { navController.navigateToProfile() }
-                        )
+                        if (currentRoute != loginRoute) {
+                            GYMIHeader(
+                                navigateToMain = { navController.navigateToMain() },
+                                navigateToNotice = { navController.navigateToNoticeList() },
+                                navigationToProfile = { navController.navigateToProfile() }
+                            )
+                        }
                     },
                     bottomBar = {
                         val destinations = listOf(reservationRoute, mainRoute, equipmentRoute)
