@@ -96,7 +96,7 @@ class MainActivity : ComponentActivity() {
                             .padding(paddingValues)
                             .background(GYMITheme.colors.bg),
                         navController = navController,
-                        startDestination = mainRoute
+                        startDestination = loginRoute
                     )
                 }
             }
