@@ -1,4 +1,4 @@
-package com.mpersand.gymi_android
+package com.mpersand.gymi_android.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

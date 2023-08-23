@@ -14,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.mpersand.gymi_android.navigation.GYMINavHost
 import com.mpersand.gymi_android.navigation.navigateToDestination
 import com.mpersand.gymi_components.component.header.GYMIHeader
 import com.mpersand.gymi_components.component.navbar.GYMINavBar
@@ -95,7 +96,7 @@ class MainActivity : ComponentActivity() {
                             .padding(paddingValues)
                             .background(GYMITheme.colors.bg),
                         navController = navController,
-                        startDestination = mainRoute
+                        startDestination = loginRoute
                     )
                 }
             }
