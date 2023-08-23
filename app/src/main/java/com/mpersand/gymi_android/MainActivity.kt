@@ -14,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.mpersand.gymi_android.navigation.navigateToDestination
 import com.mpersand.gymi_components.component.header.GYMIHeader
 import com.mpersand.gymi_components.component.navbar.GYMINavBar
 import com.mpersand.gymi_components.component.navbar.GYMINavItem
@@ -26,11 +27,9 @@ import com.mpersand.gymi_components.theme.Theme
 import com.mpersand.presentation.view.equipment.navigation.equipmentRoute
 import com.mpersand.presentation.view.login.navigation.loginRoute
 import com.mpersand.presentation.view.main.navigation.mainRoute
-import com.mpersand.presentation.view.main.navigation.navigateToMain
-import com.mpersand.presentation.view.notice.list.navigation.navigateToNoticeList
 import com.mpersand.presentation.view.notice.list.navigation.noticeListRoute
 import com.mpersand.presentation.view.notice.write.navigation.navigateToNoticeWrite
-import com.mpersand.presentation.view.profile.navigation.navigateToProfile
+import com.mpersand.presentation.view.profile.navigation.profileRoute
 import com.mpersand.presentation.view.reservation.navigation.reservationRoute
 
 class MainActivity : ComponentActivity() {
@@ -50,9 +49,9 @@ class MainActivity : ComponentActivity() {
                     topBar = {
                         if (currentRoute != loginRoute) {
                             GYMIHeader(
-                                navigateToMain = { navController.navigateToMain() },
-                                navigateToNotice = { navController.navigateToNoticeList() },
-                                navigationToProfile = { navController.navigateToProfile() }
+                                navigateToMain = { navController.navigateToDestination(mainRoute) },
+                                navigateToNotice = { navController.navigateToDestination(noticeListRoute) },
+                                navigationToProfile = { navController.navigateToDestination(profileRoute) }
                             )
                         }
                     },
@@ -74,7 +73,7 @@ class MainActivity : ComponentActivity() {
                                             }
                                         }
                                     ) {
-                                        navController.navigate(destination)
+                                        navController.navigateToDestination(destination)
                                     }
                                 }
                             }
@@ -96,7 +95,7 @@ class MainActivity : ComponentActivity() {
                             .padding(paddingValues)
                             .background(GYMITheme.colors.bg),
                         navController = navController,
-                        startDestination = loginRoute
+                        startDestination = mainRoute
                     )
                 }
             }
