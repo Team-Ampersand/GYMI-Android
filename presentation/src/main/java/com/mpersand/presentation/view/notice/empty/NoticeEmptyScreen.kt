@@ -1,6 +1,5 @@
 package com.mpersand.presentation.view.notice.empty
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,9 +18,7 @@ import com.mpersand.gymi_components.theme.IcNotice
 @Composable
 fun NoticeEmptyScreen(modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(GYMITheme.colors.bg),
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

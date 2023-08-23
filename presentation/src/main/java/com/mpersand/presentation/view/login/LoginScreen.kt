@@ -1,6 +1,5 @@
 package com.mpersand.presentation.view.login
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,9 +20,7 @@ import com.msg.gauthsignin.component.utils.Types
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(GYMITheme.colors.bg),
+        modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = modifier.weight(1f))
