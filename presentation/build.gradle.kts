@@ -1,32 +1,34 @@
+@Suppress("DSL_SCOPE_VIOLATION")
+
 plugins {
-    id(ProjectProperties.Gradle.LIBRARY)
-    id(ProjectProperties.Gradle.KOTLIN)
-    kotlin(ProjectProperties.Gradle.KAPT)
+    alias(libs.plugins.library)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.kapt)
 }
 
 android {
-    namespace = ProjectProperties.NameSpace.PRESENTATION
-    compileSdk = ProjectProperties.Versions.COMPILE_SDK
+    namespace = "com.mpersand.presentation"
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = ProjectProperties.Versions.MIN_SDK
+        minSdk = 26
 
-        testInstrumentationRunner = ProjectProperties.Test.TEST_RUNNER
-        consumerProguardFiles(ProjectProperties.Files.CONSUMER_PROGUARD)
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile(ProjectProperties.Files.DEFAULT_PROGUARD), ProjectProperties.Files.PROGUARD)
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility = ProjectProperties.Versions.JAVA_VERSION
-        targetCompatibility = ProjectProperties.Versions.JAVA_VERSION
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = ProjectProperties.Versions.JVM_TARGET
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -39,29 +41,30 @@ android {
 dependencies {
     implementation(project(":domain"))
 
-    implementation(Dependency.AndroidX.CORE_KTX)
-    implementation(Dependency.AndroidX.APPCOMPAT)
-    implementation(Dependency.AndroidX.NAVIGATION)
-    implementation(Dependency.Compose.COMPOSE)
-    implementation(Dependency.Compose.COMPOSE_TOOLING)
-    implementation(Dependency.Compose.COMPOSE_MATERIAL)
-    implementation(Dependency.Compose.COMPOSE_PREVIEW)
-    implementation(Dependency.Google.MATERIAL)
-    implementation(Dependency.MSG.GAUTH)
-    testImplementation(Dependency.Test.JUNIT)
-    androidTestImplementation(Dependency.Test.ANDROID_JUNIT)
-    androidTestImplementation(Dependency.Test.ESPRESSO)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.navigation)
+    implementation(libs.androidx.viewmodel)
 
-    implementation(Dependency.Google.HILT)
-    kapt(Dependency.Google.HILT_COMPILER)
+    implementation(libs.compose)
+    implementation(libs.compose.tooling)
+    implementation(libs.compose.material)
+    implementation(libs.compose.preview)
 
-    implementation(Dependency.Orbit.CORE)
-    implementation(Dependency.Orbit.VIEWMODEL)
-    implementation(Dependency.Orbit.COMPOSE)
-    implementation(Dependency.Orbit.TEST)
+    implementation(libs.google.material)
+    implementation(libs.google.hilt)
+    kapt(libs.google.hilt.compiler)
 
-    implementation(Dependency.AndroidX.VIEWMODEl)
+    implementation(libs.libraries.gauth)
+    implementation(libs.libraries.orbit.core)
+    implementation(libs.libraries.orbit.viewmodel)
+    implementation(libs.libraries.orbit.compose)
+    implementation(libs.libraries.orbit.test)
 
-    implementation(Dependency.Libraries.GUS)
-    implementation(Dependency.Libraries.COIL)
+    implementation(libs.libraries.gus)
+    implementation(libs.libraries.coil)
+
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.android.junit)
+    androidTestImplementation(libs.test.espresso)
 }

@@ -1,8 +1,10 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+@file:Suppress("DSL_SCOPE_VIOLATION")
+
 plugins {
-    id(ProjectProperties.Gradle.APPLICATION) version Versions.GRADLE apply false
-    id(ProjectProperties.Gradle.LIBRARY) version Versions.GRADLE apply false
-    id(ProjectProperties.Gradle.KOTLIN) version Versions.KOTLIN apply false
-    id(ProjectProperties.Gradle.KTLINT) version Versions.KTLINT
-    id(ProjectProperties.Gradle.HILT_PLUGIN) version Versions.HILT apply false
+    alias(libs.plugins.application) apply false
+    alias(libs.plugins.library) apply false
+    alias(libs.plugins.kotlin) apply false
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.kapt) apply false
 }
