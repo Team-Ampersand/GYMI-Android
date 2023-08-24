@@ -1,7 +1,7 @@
 [versions]
-GRADLE = "7.4.2"
-KOTLIN = "1.8.20"
-KTLINT = "11.3.2"
+gradle = "7.4.2"
+kotlin = "1.8.20"
+ktlint = "11.3.2"
 
 core-ktx = "1.8.0"
 appcompat = "1.6.1"
@@ -28,7 +28,6 @@ coil = "2.4.0"
 gus = "1.1.6"
 gauth = "v1.0.7"
 orbit = "6.0.0"
-
 
 [libraries]
 androidx-core = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -60,9 +59,17 @@ libraries-retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "
 libraries-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
 libraries-okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 libraries-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
-libraries-gus = { group = "com.github.Team-Ampersand", name = "GUS", version.ref = "1.1.6" }
+libraries-gus = { group = "com.github.Team-Ampersand", name = "GUS", version.ref = "gus" }
 libraries-gauth = { group = "com.github.GSM-MSG", name = "GAuth-Signin-Android", version.ref = "gauth" }
 libraries-orbit-core = { group = "org.orbit-mvi", name = "orbit-core", version.ref = "orbit"  }
 libraries-orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit" }
 libraries-orbit-compose = { group = "org.orbit-mvi", name = "orbit-compose", version.ref = "orbit" }
 libraries-orbit-test = { group = "org.orbit-mvi", name = "orbit-test", version.ref = "orbit" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradle" }
+android-library = { id = "com.android.library", version.ref = "gradle" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint"}
+hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
