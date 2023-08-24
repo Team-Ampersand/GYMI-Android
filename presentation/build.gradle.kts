@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 @Suppress("DSL_SCOPE_VIOLATION")
 
 plugins {
@@ -15,6 +18,18 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField(
+            "String",
+            "CLIENT_ID",
+            getApiKey("CLIENT_ID")
+        )
+
+        buildConfigField(
+            "String",
+            "REDIRECT_URI",
+            getApiKey("REDIRECT_URI")
+        )
     }
 
     buildTypes {
@@ -67,4 +82,11 @@ dependencies {
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.android.junit)
     androidTestImplementation(libs.test.espresso)
+}
+
+fun getApiKey(propertyKey: String): String {
+    val propFile = rootProject.file("./local.properties")
+    val properties = Properties()
+    properties.load(FileInputStream(propFile))
+    return properties.getProperty(propertyKey)
 }
