@@ -1,4 +1,5 @@
 @Suppress("DSL_SCOPE_VIOLATION")
+
 plugins {
     alias(libs.plugins.library)
     alias(libs.plugins.kotlin)
