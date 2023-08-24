@@ -1,25 +1,26 @@
 import java.io.FileInputStream
 import java.util.Properties
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(ProjectProperties.Gradle.APPLICATION)
-    id(ProjectProperties.Gradle.KOTLIN)
-    id(ProjectProperties.Gradle.HILT_PLUGIN)
-    kotlin(ProjectProperties.Gradle.KAPT)
+    alias(libs.plugins.application)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kapt)
 }
 
 android {
-    namespace = ProjectProperties.NameSpace.APP
-    compileSdk = ProjectProperties.Versions.COMPILE_SDK
+    namespace = "com.mpersand.gymi_android"
+    compileSdk = 33
 
     defaultConfig {
-        applicationId = ProjectProperties.Id.APPLICATION_ID
-        minSdk = ProjectProperties.Versions.MIN_SDK
-        targetSdk = ProjectProperties.Versions.TARGET_SDK
-        versionCode = ProjectProperties.Versions.VERSION_CODE
-        versionName = ProjectProperties.Versions.VERSION_NAME
+        applicationId = "com.mpersand.gymi_android"
+        minSdk = 26
+        targetSdk = 33
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner = ProjectProperties.Test.TEST_RUNNER
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField(
             "String",
@@ -32,17 +33,17 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile(ProjectProperties.Files.DEFAULT_PROGUARD),
-                ProjectProperties.Files.PROGUARD
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
     }
     compileOptions {
-        sourceCompatibility = ProjectProperties.Versions.JAVA_VERSION
-        targetCompatibility = ProjectProperties.Versions.JAVA_VERSION
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = ProjectProperties.Versions.JVM_TARGET
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -57,26 +58,28 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
-    implementation(Dependency.AndroidX.CORE_KTX)
-    implementation(Dependency.AndroidX.APPCOMPAT)
-    implementation(Dependency.AndroidX.NAVIGATION)
-    implementation(Dependency.Compose.COMPOSE)
-    implementation(Dependency.Compose.COMPOSE_TOOLING)
-    implementation(Dependency.Compose.COMPOSE_MATERIAL)
-    implementation(Dependency.Compose.COMPOSE_PREVIEW)
-    implementation(Dependency.Google.MATERIAL)
-    testImplementation(Dependency.Test.JUNIT)
-    androidTestImplementation(Dependency.Test.ANDROID_JUNIT)
-    androidTestImplementation(Dependency.Test.ESPRESSO)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.navigation)
 
-    implementation(Dependency.Google.HILT)
-    kapt(Dependency.Google.HILT_COMPILER)
+    implementation(libs.compose)
+    implementation(libs.compose.tooling)
+    implementation(libs.compose.material)
+    implementation(libs.compose.preview)
 
-    implementation(Dependency.Libraries.GUS)
-    implementation(Dependency.Libraries.RETROFIT)
-    implementation(Dependency.Libraries.RETROFIT_CONVERTER_GSON)
-    implementation(Dependency.Libraries.OKHTTP)
-    implementation(Dependency.Libraries.OKHTTP_LOGGING_INTERCEPTOR)
+    implementation(libs.google.material)
+    implementation(libs.google.hilt)
+    kapt(libs.google.hilt.compiler)
+
+    implementation(libs.libraries.gus)
+    implementation(libs.libraries.retrofit)
+    implementation(libs.libraries.retrofit.converter.gson)
+    implementation(libs.libraries.okhttp)
+    implementation(libs.libraries.okhttp.logging.interceptor)
+
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.android.junit)
+    androidTestImplementation(libs.test.espresso)
 }
 
 fun getApiKey(propertyKey: String): String {

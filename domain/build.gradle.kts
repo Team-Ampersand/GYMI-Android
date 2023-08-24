@@ -1,43 +1,45 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(ProjectProperties.Gradle.LIBRARY)
-    id(ProjectProperties.Gradle.KOTLIN)
-    kotlin(ProjectProperties.Gradle.KAPT)
+    alias(libs.plugins.library)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.kapt)
 }
 
 android {
-    namespace = ProjectProperties.NameSpace.DOMAIN
-    compileSdk = ProjectProperties.Versions.COMPILE_SDK
+    namespace = "com.mpersand.domain"
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = ProjectProperties.Versions.MIN_SDK
+        minSdk = 26
 
-        testInstrumentationRunner = ProjectProperties.Test.TEST_RUNNER
-        consumerProguardFiles(ProjectProperties.Files.CONSUMER_PROGUARD)
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile(ProjectProperties.Files.DEFAULT_PROGUARD), ProjectProperties.Files.PROGUARD)
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility = ProjectProperties.Versions.JAVA_VERSION
-        targetCompatibility = ProjectProperties.Versions.JAVA_VERSION
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = ProjectProperties.Versions.JVM_TARGET
+        jvmTarget = "11"
     }
 }
 
 dependencies {
-    implementation(Dependency.AndroidX.CORE_KTX)
-    implementation(Dependency.AndroidX.APPCOMPAT)
-    implementation(Dependency.Google.MATERIAL)
-    testImplementation(Dependency.Test.JUNIT)
-    androidTestImplementation(Dependency.Test.ANDROID_JUNIT)
-    androidTestImplementation(Dependency.Test.ESPRESSO)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.appcompat)
 
-    implementation(Dependency.Google.HILT)
-    kapt(Dependency.Google.HILT_COMPILER)
+    implementation(libs.google.material)
+    implementation(libs.google.hilt)
+    kapt(libs.google.hilt.compiler)
+
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.android.junit)
+    androidTestImplementation(libs.test.espresso)
 }

@@ -1,21 +1,22 @@
 import java.io.FileInputStream
 import java.util.Properties
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(ProjectProperties.Gradle.LIBRARY)
-    id(ProjectProperties.Gradle.KOTLIN)
-    kotlin(ProjectProperties.Gradle.KAPT)
+    alias(libs.plugins.library)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.kapt)
 }
 
 android {
-    namespace = ProjectProperties.NameSpace.DATA
-    compileSdk = ProjectProperties.Versions.COMPILE_SDK
+    namespace = "com.mpersand.data"
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = ProjectProperties.Versions.MIN_SDK
+        minSdk = 26
 
-        testInstrumentationRunner = ProjectProperties.Test.TEST_RUNNER
-        consumerProguardFiles(ProjectProperties.Files.CONSUMER_PROGUARD)
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
 
         buildConfigField(
             "String",
@@ -27,36 +28,37 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile(ProjectProperties.Files.DEFAULT_PROGUARD), ProjectProperties.Files.PROGUARD)
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility = ProjectProperties.Versions.JAVA_VERSION
-        targetCompatibility = ProjectProperties.Versions.JAVA_VERSION
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = ProjectProperties.Versions.JVM_TARGET
+        jvmTarget = "11"
     }
 }
 
 dependencies {
     implementation(project(":domain"))
 
-    implementation(Dependency.AndroidX.CORE_KTX)
-    implementation(Dependency.AndroidX.APPCOMPAT)
-    implementation(Dependency.Google.MATERIAL)
-    testImplementation(Dependency.Test.JUNIT)
-    androidTestImplementation(Dependency.Test.ANDROID_JUNIT)
-    androidTestImplementation(Dependency.Test.ESPRESSO)
-    implementation(Dependency.Google.HILT)
-    kapt(Dependency.Google.HILT_COMPILER)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.datastore)
 
-    implementation(Dependency.Libraries.RETROFIT)
-    implementation(Dependency.Libraries.OKHTTP)
-    implementation(Dependency.Libraries.OKHTTP_LOGGING_INTERCEPTOR)
+    implementation(libs.google.material)
+    implementation(libs.google.hilt)
+    implementation(libs.google.gson)
+    kapt(libs.google.hilt.compiler)
 
-    implementation(Dependency.Google.GSON)
-    implementation(Dependency.AndroidX.DATASTORE)
+    implementation(libs.libraries.retrofit)
+    implementation(libs.libraries.okhttp)
+    implementation(libs.libraries.okhttp.logging.interceptor)
+
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.android.junit)
+    androidTestImplementation(libs.test.espresso)
 }
 
 fun getApiKey(propertyKey: String): String {
