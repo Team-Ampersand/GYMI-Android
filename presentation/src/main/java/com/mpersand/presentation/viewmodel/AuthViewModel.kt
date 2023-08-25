@@ -9,15 +9,23 @@ import com.mpersand.domain.usecase.GauthLogoutUseCase
 import com.mpersand.domain.usecase.SaveTokenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.postSideEffect
+import org.orbitmvi.orbit.syntax.simple.reduce
+import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor (
     private val gAuthLoginUseCase: GauthLoginUseCase,
     private val gAuthLogoutUseCase: GauthLogoutUseCase,
-    private val saveTokenUseCase: SaveTokenUseCase
-): ViewModel() {
-    fun gAuthLogin(gAuthLoginRequestModel: GauthLoginRequestModel) {
+    private val saveTokenUseCase: SaveTokenUseCase,
+): ContainerHost<AuthState, AuthSideEffect>, ViewModel() {
+
+    override val container = container<AuthState, AuthSideEffect>(AuthState())
+
+    fun gAuthLogin(gAuthLoginRequestModel: GauthLoginRequestModel) = intent {
         viewModelScope.launch {
             gAuthLoginUseCase(gAuthLoginRequestModel)
                 .onSuccess {
@@ -28,6 +36,15 @@ class AuthViewModel @Inject constructor (
                         accessExp = it.accessExp.toString(),
                         refreshExp = it.refreshExp.toString()
                     )
+                    postSideEffect(AuthSideEffect.Login)
+                    reduce {
+                        state.copy(
+                            accessToken = it.accessToken,
+                            refreshToken = it.refreshToken,
+                            accessExp = it.accessExp.toString(),
+                            refreshExp = it.refreshExp.toString()
+                        )
+                    }
                 }
                 .onFailure {
                     Log.d("Failure", "gAuthLogin: ${it.message}")
@@ -47,4 +64,15 @@ class AuthViewModel @Inject constructor (
         }
     }
 
+}
+
+data class AuthState(
+    val accessToken: String = "",
+    val refreshToken: String = "",
+    val accessExp: String = "",
+    val refreshExp: String = ""
+)
+
+sealed class AuthSideEffect {
+    object Login: AuthSideEffect()
 }
