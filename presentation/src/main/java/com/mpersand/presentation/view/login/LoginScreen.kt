@@ -33,14 +33,14 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 fun LoginScreen(
     modifier: Modifier = Modifier,
     authViewModel: AuthViewModel = hiltViewModel(),
-    navigationToMain: () -> Unit
+    navigateToMain: () -> Unit
 ) {
     var isClicked by remember { mutableStateOf(false) }
     val authState by authViewModel.collectAsState()
 
     authViewModel.collectSideEffect { authSideEffect ->
         when(authSideEffect) {
-            is AuthSideEffect.Login -> { navigationToMain() }
+            is AuthSideEffect.Login -> { navigateToMain() }
         }
     }
 
