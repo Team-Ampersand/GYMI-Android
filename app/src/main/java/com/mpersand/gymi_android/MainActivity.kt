@@ -32,7 +32,9 @@ import com.mpersand.presentation.view.notice.list.navigation.noticeListRoute
 import com.mpersand.presentation.view.notice.write.navigation.navigateToNoticeWrite
 import com.mpersand.presentation.view.profile.navigation.profileRoute
 import com.mpersand.presentation.view.reservation.navigation.reservationRoute
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
