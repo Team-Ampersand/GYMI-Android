@@ -21,14 +21,11 @@ import com.mpersand.domain.model.auth.request.GauthLoginRequestModel
 import com.mpersand.gymi_components.theme.GYMITheme
 import com.mpersand.gymi_components.theme.IcGYMILogo
 import com.mpersand.presentation.BuildConfig
-import com.mpersand.presentation.viewmodel.AuthSideEffect
-import com.mpersand.presentation.viewmodel.AuthState
 import com.mpersand.presentation.viewmodel.AuthViewModel
 import com.msg.gauthsignin.GAuthSigninWebView
 import com.msg.gauthsignin.component.GAuthButton
 import com.msg.gauthsignin.component.utils.Types
 import org.orbitmvi.orbit.compose.collectAsState
-import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
 fun LoginScreen(
