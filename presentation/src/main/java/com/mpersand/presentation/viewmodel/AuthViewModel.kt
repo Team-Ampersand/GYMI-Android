@@ -36,7 +36,6 @@ class AuthViewModel @Inject constructor(
                         accessExp = it.accessExp.toString(),
                         refreshExp = it.refreshExp.toString()
                     )
-                    postSideEffect(AuthSideEffect.Login)
                     reduce {
                         state.copy(
                             success = true,
@@ -71,6 +70,4 @@ data class AuthState(
     val error: String? = null
 )
 
-sealed class AuthSideEffect {
-    object Login : AuthSideEffect()
-}
+sealed class AuthSideEffect {}

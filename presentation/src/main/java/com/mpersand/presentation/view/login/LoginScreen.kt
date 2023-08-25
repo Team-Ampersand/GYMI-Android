@@ -39,12 +39,6 @@ fun LoginScreen(
     var isClicked by remember { mutableStateOf(false) }
     val authState by authViewModel.collectAsState()
 
-    authViewModel.collectSideEffect { authSideEffect ->
-        when(authSideEffect) {
-            is AuthSideEffect.Login -> {  }
-        }
-    }
-
     if (authState.success) navigateToMain()
 
     if (isClicked) {
