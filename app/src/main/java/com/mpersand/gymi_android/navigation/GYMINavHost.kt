@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import com.mpersand.presentation.view.equipment.navigation.equipmentScreen
 import com.mpersand.presentation.view.login.navigation.loginScreen
 import com.mpersand.presentation.view.main.navigation.mainScreen
+import com.mpersand.presentation.view.main.navigation.navigateToMain
 import com.mpersand.presentation.view.notice.detail.navigation.noticeDetailScreen
 import com.mpersand.presentation.view.notice.edit.navigation.noticeEditScreen
 import com.mpersand.presentation.view.notice.empty.navigation.noticeEmptyScreen
@@ -28,7 +29,7 @@ fun GYMINavHost(
         startDestination = startDestination
     ) {
         equipmentScreen()
-        loginScreen()
+        loginScreen { navController.navigateToMain() }
         mainScreen()
         noticeEmptyScreen()
         noticeListScreen()
