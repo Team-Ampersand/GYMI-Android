@@ -17,11 +17,11 @@ import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor (
+class AuthViewModel @Inject constructor(
     private val gAuthLoginUseCase: GauthLoginUseCase,
     private val gAuthLogoutUseCase: GauthLogoutUseCase,
     private val saveTokenUseCase: SaveTokenUseCase,
-): ContainerHost<AuthState, AuthSideEffect>, ViewModel() {
+) : ContainerHost<AuthState, AuthSideEffect>, ViewModel() {
 
     override val container = container<AuthState, AuthSideEffect>(AuthState())
 
@@ -39,10 +39,9 @@ class AuthViewModel @Inject constructor (
                     postSideEffect(AuthSideEffect.Login)
                     reduce {
                         state.copy(
-                            accessToken = it.accessToken,
-                            refreshToken = it.refreshToken,
-                            accessExp = it.accessExp.toString(),
-                            refreshExp = it.refreshExp.toString()
+                            success = true,
+                            loading = false,
+                            error = ""
                         )
                     }
                 }
@@ -67,12 +66,11 @@ class AuthViewModel @Inject constructor (
 }
 
 data class AuthState(
-    val accessToken: String = "",
-    val refreshToken: String = "",
-    val accessExp: String = "",
-    val refreshExp: String = ""
+    val success: Boolean = false,
+    val loading: Boolean = true,
+    val error: String? = null
 )
 
 sealed class AuthSideEffect {
-    object Login: AuthSideEffect()
+    object Login : AuthSideEffect()
 }
