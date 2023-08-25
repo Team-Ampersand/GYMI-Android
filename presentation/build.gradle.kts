@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.navigation)
     implementation(libs.androidx.viewmodel)
+    implementation(libs.androidx.hilt.navigation)
 
     implementation(libs.compose)
     implementation(libs.compose.tooling)

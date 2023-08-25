@@ -9,6 +9,7 @@ lifecycle = "2.3.1"
 viewmodel = "2.5.1"
 datastore = "1.0.0"
 navigation = "2.6.0"
+hilt-navigation = "1.0.0"
 
 junit = "4.13.2"
 android-junit = "1.1.5"
@@ -36,6 +37,7 @@ androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-k
 androidx-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewmodel" }
 androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
 androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+androidx-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation" }
 
 test-junit = { group = "junit", name = "junit", version.ref = "junit" }
 test-android-junit = { group = "androidx.test.ext", name = "junit", version.ref = "android-junit" }
