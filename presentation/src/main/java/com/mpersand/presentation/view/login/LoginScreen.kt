@@ -22,6 +22,7 @@ import com.mpersand.gymi_components.theme.GYMITheme
 import com.mpersand.gymi_components.theme.IcGYMILogo
 import com.mpersand.presentation.BuildConfig
 import com.mpersand.presentation.viewmodel.AuthSideEffect
+import com.mpersand.presentation.viewmodel.AuthState
 import com.mpersand.presentation.viewmodel.AuthViewModel
 import com.msg.gauthsignin.GAuthSigninWebView
 import com.msg.gauthsignin.component.GAuthButton
@@ -40,9 +41,11 @@ fun LoginScreen(
 
     authViewModel.collectSideEffect { authSideEffect ->
         when(authSideEffect) {
-            is AuthSideEffect.Login -> { navigateToMain() }
+            is AuthSideEffect.Login -> {  }
         }
     }
+
+    if (authState.success) navigateToMain()
 
     if (isClicked) {
         GAuthSigninWebView(
