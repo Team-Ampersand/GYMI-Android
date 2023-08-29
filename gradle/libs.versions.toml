@@ -26,7 +26,7 @@ gson = "2.8.9"
 retrofit = "2.9.0"
 okhttp = "4.10.0"
 coil = "2.4.0"
-gus = "1.1.6"
+gus = "1.1.7"
 gauth = "v1.0.7"
 orbit = "6.0.0"
 
