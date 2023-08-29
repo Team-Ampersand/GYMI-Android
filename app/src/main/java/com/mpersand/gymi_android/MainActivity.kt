@@ -40,8 +40,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            GYMITheme.gymiTheme = if (!isSystemInDarkTheme()) Theme.LIGHT else Theme.DARK
-
             GYMITheme {
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
