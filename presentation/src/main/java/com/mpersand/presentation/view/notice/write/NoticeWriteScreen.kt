@@ -77,25 +77,15 @@ fun NoticeWriteScreen(
         }
         Spacer(modifier = Modifier.height(13.dp))
         GYMITextField(
-            background = GYMITheme.colors.n5,
             value = title,
-            textColor = GYMITheme.colors.bw,
-            focusColor = GYMITheme.colors.p3,
             placeholder = "제목을 입력해주세요.",
-            placeholderColor = GYMITheme.colors.n2,
-            horizontalPadding = 0.dp,
             onValueChange = { title = it }
         )
         Spacer(modifier = Modifier.height(13.dp))
         GYMITextField(
             modifier = Modifier.weight(1f),
-            background = GYMITheme.colors.n5,
             value = content,
-            textColor = GYMITheme.colors.bw,
-            focusColor = GYMITheme.colors.p3,
             placeholder = "내용을 입력해주세요.",
-            placeholderColor = GYMITheme.colors.n2,
-            horizontalPadding = 0.dp,
             onValueChange = { content = it }
         )
         Spacer(modifier = Modifier.height(13.dp))

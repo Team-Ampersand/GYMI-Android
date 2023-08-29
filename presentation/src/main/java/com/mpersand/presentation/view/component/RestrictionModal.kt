@@ -60,11 +60,7 @@ fun RestrictionModal(
                 background = White,
                 value = restrictedDays,
                 border = Color(0xFFD3D3D3),
-                textColor = Black,
-                focusColor = GYMITheme.colors.p1,
                 placeholder = "제재 일수를 입력해주세요",
-                placeholderColor = GYMITheme.colors.n2,
-                horizontalPadding = 0.dp,
                 onValueChange = { restrictedDays = it },
             )
             GYMIButton(
