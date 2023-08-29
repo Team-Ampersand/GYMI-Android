@@ -93,6 +93,8 @@ fun ReportModal(
             Spacer(modifier = Modifier.height(7.dp))
             GYMITextField(
                 modifier = Modifier.height(112.dp),
+                background = White,
+                textColor = Black,
                 value = detail,
                 border = Color(0xFFD3D3D3),
                 placeholder = "세부사항을 입력해주세요",

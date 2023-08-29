@@ -58,6 +58,7 @@ fun RestrictionModal(
             Spacer(modifier = Modifier.height(7.dp))
             GYMITextField(
                 background = White,
+                textColor = Black,
                 value = restrictedDays,
                 border = Color(0xFFD3D3D3),
                 placeholder = "제재 일수를 입력해주세요",
