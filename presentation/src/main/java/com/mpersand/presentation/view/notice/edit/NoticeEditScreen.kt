@@ -30,6 +30,8 @@ import com.mpersand.gymi_components.component.button.GYMIButton
 import com.mpersand.gymi_components.component.textfield.GYMITextField
 import com.mpersand.gymi_components.theme.GYMITheme
 import com.mpersand.gymi_components.theme.IcBackArrow
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun NoticeEditScreen(
@@ -38,7 +40,7 @@ fun NoticeEditScreen(
     date: String = "2023.08.22",
     title: String = "제목",
     content: String = "내용",
-    imageUrlList: List<String> = mutableListOf(),
+    imageUrlList: ImmutableList<String> = listOf("").toImmutableList(),
     navigateToNotice: () -> Unit
 ) {
     var noticeTitle by remember { mutableStateOf(title) }
@@ -157,7 +159,7 @@ fun NoticeEditScreen(
 @Preview
 @Composable
 fun NoticeEditScreenPreview() {
-    var sampleList = mutableListOf("", "")
+    val sampleList = mutableListOf("", "").toImmutableList()
     NoticeEditScreen(
         writer = "체육선생님",
         date = "2023.08.22",
