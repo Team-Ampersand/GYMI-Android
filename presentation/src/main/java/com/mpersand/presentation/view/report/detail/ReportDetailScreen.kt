@@ -173,9 +173,7 @@ fun ReportDetailScreen(
         }
         Spacer(modifier = Modifier.height(25.dp))
         GYMIButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
+            modifier = Modifier.fillMaxWidth(),
             text = "제재하기",
             backgroundColor = GYMITheme.colors.error
         ) { navigateToReport() }
