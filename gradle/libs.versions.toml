@@ -29,6 +29,7 @@ coil = "2.4.0"
 gus = "1.1.7"
 gauth = "v1.0.7"
 orbit = "6.0.0"
+moshi = "1.15.0"
 collections-immutable = "0.3.5"
 
 [libraries]
@@ -58,7 +59,6 @@ google-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compi
 google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
 libraries-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-libraries-retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
 libraries-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
 libraries-okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 libraries-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
@@ -68,6 +68,9 @@ libraries-orbit-core = { group = "org.orbit-mvi", name = "orbit-core", version.r
 libraries-orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit" }
 libraries-orbit-compose = { group = "org.orbit-mvi", name = "orbit-compose", version.ref = "orbit" }
 libraries-orbit-test = { group = "org.orbit-mvi", name = "orbit-test", version.ref = "orbit" }
+libraries-moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
+libraries-moshi-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
+libraries-moshi-codegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshi" }
 libraries-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "collections-immutable" }
 
 [plugins]

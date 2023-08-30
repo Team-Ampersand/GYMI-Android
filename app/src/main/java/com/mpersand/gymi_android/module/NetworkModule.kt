@@ -4,6 +4,7 @@ import android.util.Log
 import com.mpersand.data.remote.network.AuthApi
 import com.mpersand.data.remote.util.RequestInterceptor
 import com.mpersand.gymi_android.BuildConfig
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +12,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -44,19 +45,25 @@ object NetworkModule {
     @Singleton
     fun provideRetrofitInstance(
         okHttpClient: OkHttpClient,
-        gsonConverterFactory: GsonConverterFactory
+        moshiConverterFactory: MoshiConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(gsonConverterFactory)
+            .addConverterFactory(moshiConverterFactory)
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
+    fun provideMoshiInstance(): Moshi {
+        return Moshi.Builder().build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideConverterFactory(moshi: Moshi): MoshiConverterFactory {
+        return MoshiConverterFactory.create(moshi)
     }
 
     @Provides

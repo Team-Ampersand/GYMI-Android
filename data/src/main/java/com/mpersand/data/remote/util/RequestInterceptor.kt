@@ -1,12 +1,12 @@
 package com.mpersand.data.remote.util
 
-import android.os.Build
-import androidx.annotation.RequiresApi
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import com.mpersand.data.BuildConfig
 import com.mpersand.data.local.datasource.LocalDataSource
+import com.mpersand.data.remote.model.auth.tokenReissue.request.TokenReissueRequest
 import com.mpersand.domain.exception.TokenExpiredException
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.adapter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -19,8 +19,10 @@ import java.time.LocalDateTime
 import javax.inject.Inject
 
 class RequestInterceptor @Inject constructor(
+    private val moshi: Moshi,
     private val localDataSource: LocalDataSource
 ) : Interceptor {
+    @OptIn(ExperimentalStdlibApi::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val builder = request.newBuilder()
@@ -53,13 +55,14 @@ class RequestInterceptor @Inject constructor(
             val response = client.newCall(reissueRequest).execute()
 
             if (response.isSuccessful) {
-                val token = JsonParser.parseString(response.body!!.string()) as JsonObject
+                val jsonAdapter: JsonAdapter<TokenReissueRequest> = moshi.adapter()
+                val token = jsonAdapter.fromJson(response.body!!.string())!!
                 runBlocking {
                     localDataSource.saveToken(
-                        accessToken = token["accessToken"].asString,
-                        refreshToken = token["refreshToken"].asString,
-                        accessExp = token["accessExp"].asString,
-                        refreshExp = token["refreshExp"].asString
+                        accessToken = token.accessToken,
+                        refreshToken = token.refreshToken,
+                        accessExp = token.accessExp.toString(),
+                        refreshExp = token.refreshExp.toString()
                     )
                 }
             } else throw TokenExpiredException()

@@ -74,7 +74,9 @@ dependencies {
 
     implementation(libs.libraries.gus)
     implementation(libs.libraries.retrofit)
-    implementation(libs.libraries.retrofit.converter.gson)
+    implementation(libs.libraries.moshi.converter)
+    implementation(libs.libraries.moshi)
+    kapt(libs.libraries.moshi.codegen)
     implementation(libs.libraries.okhttp)
     implementation(libs.libraries.okhttp.logging.interceptor)
 
