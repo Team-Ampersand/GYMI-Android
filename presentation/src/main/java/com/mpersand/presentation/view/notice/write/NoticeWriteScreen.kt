@@ -37,7 +37,7 @@ fun NoticeWriteScreen(
     modifier: Modifier = Modifier,
     writer: String = "체육선생님",
     date: String = "2023.08.22",
-    imageUrlList: ImmutableList<String>,
+    imageUrlList: ImmutableList<String> = listOf("").toImmutableList(),
     navigateToNotice: () -> Unit
 ) {
     var title by remember { mutableStateOf("") }

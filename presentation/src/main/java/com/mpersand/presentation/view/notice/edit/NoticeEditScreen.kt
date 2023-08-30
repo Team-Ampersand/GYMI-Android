@@ -40,7 +40,7 @@ fun NoticeEditScreen(
     date: String = "2023.08.22",
     title: String = "제목",
     content: String = "내용",
-    imageUrlList: ImmutableList<String>,
+    imageUrlList: ImmutableList<String> = listOf("").toImmutableList(),
     navigateToNotice: () -> Unit
 ) {
     var noticeTitle by remember { mutableStateOf(title) }
