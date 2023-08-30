@@ -28,13 +28,15 @@ import com.mpersand.gymi_components.theme.GYMITheme
 import com.mpersand.gymi_components.theme.IcBackArrow
 import com.mpersand.gymi_components.theme.IcDelete
 import com.mpersand.gymi_components.theme.IcEdit
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun NoticeDetailScreen(
     modifier: Modifier = Modifier,
     writer: String = "체육선생님",
     date: String = "2023.08.22",
-    imageUrlList: List<String> = mutableListOf(),
+    imageUrlList: ImmutableList<String>,
     navigateToNotice: () -> Unit
 ) {
     Column(
@@ -184,7 +186,7 @@ fun NoticeDetailScreen(
 @Preview
 @Composable
 fun NoticeDetailScreenPreview() {
-    var sampleList = mutableListOf("", "")
+    val sampleList = mutableListOf("", "").toImmutableList()
     NoticeDetailScreen(
         writer = "체육선생님",
         date = "2023.08.22",

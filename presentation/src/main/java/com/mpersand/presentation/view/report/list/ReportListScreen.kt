@@ -14,14 +14,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mpersand.gymi_components.component.item.GYMINoticeItem
 import com.mpersand.gymi_components.theme.GYMITheme
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun ReportListScreen(
     modifier: Modifier = Modifier,
-    courtList: List<String>,
-    reportReasonList: List<String>,
-    dateList: List<String>,
-    contentList: List<String>
+    courtList: ImmutableList<String>,
+    reportReasonList: ImmutableList<String>,
+    dateList: ImmutableList<String>,
+    contentList: ImmutableList<String>
 ) {
     Column(modifier = modifier.padding(horizontal = 20.dp)) {
         Spacer(modifier = Modifier.height(35.dp))
@@ -47,10 +49,10 @@ fun ReportListScreen(
 @Preview
 @Composable
 fun ReportListScreenPreview() {
-    val courtList = listOf("1", "1", "3", "2", "4", "2", "3", "1")
-    val reportReasonList = listOf("무단 사용", "지각", "복장 불량", "물품 미반납", "음식물 반입", "기타", "물품 미반납", "무단 사용")
-    val dateList = listOf("2023.08.30", "2023.08.20", "2023.08.31", "2023.08.28", "2023.08.23", "2023.08.29", "2023.08.10", "2023.08.30",)
-    val contentList = listOf("1번 코트에서 --이가 무단으로 코트를 사용했습니다.", "1번 코트에서 --이가 지각을 했습니다.", "3번 코트에서 --이가 복장 불량 입니다.", "2번 코트에서 --이가 배드민턴 라켓을 반납하지 않았습니다", "4번 코트에서 --이가 음식물을 반입했습니다.", "2번 코트에서 --이가 폭력을 행사했습니다.", "3번 코트에서 --이가 농구공을 반납하지 않았습니다..", "1번 코트에서 --이가 무단으로 코트를 사용했습니다.",)
+    val courtList = listOf("1", "1", "3", "2", "4", "2", "3", "1").toImmutableList()
+    val reportReasonList = listOf("무단 사용", "지각", "복장 불량", "물품 미반납", "음식물 반입", "기타", "물품 미반납", "무단 사용").toImmutableList()
+    val dateList = listOf("2023.08.30", "2023.08.20", "2023.08.31", "2023.08.28", "2023.08.23", "2023.08.29", "2023.08.10", "2023.08.30",).toImmutableList()
+    val contentList = listOf("1번 코트에서 --이가 무단으로 코트를 사용했습니다.", "1번 코트에서 --이가 지각을 했습니다.", "3번 코트에서 --이가 복장 불량 입니다.", "2번 코트에서 --이가 배드민턴 라켓을 반납하지 않았습니다", "4번 코트에서 --이가 음식물을 반입했습니다.", "2번 코트에서 --이가 폭력을 행사했습니다.", "3번 코트에서 --이가 농구공을 반납하지 않았습니다..", "1번 코트에서 --이가 무단으로 코트를 사용했습니다.",).toImmutableList()
 
     ReportListScreen(
         modifier = Modifier
