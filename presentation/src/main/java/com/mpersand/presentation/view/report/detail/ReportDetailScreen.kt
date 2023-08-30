@@ -45,7 +45,10 @@ fun ReportDetailScreen(
             .padding(horizontal = 20.dp)
     ) {
         Spacer(modifier = Modifier.height(13.dp))
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             IcBackArrow(
                 modifier = Modifier
                     .size(18.dp)
@@ -55,7 +58,6 @@ fun ReportDetailScreen(
                     ) { navigateToReport() },
                 tint = GYMITheme.colors.bw
             )
-            Spacer(modifier = Modifier.weight(1f))
             IcDelete(
                 modifier = Modifier
                     .size(18.dp)
