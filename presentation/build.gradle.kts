@@ -76,6 +76,7 @@ dependencies {
     implementation(libs.libraries.orbit.viewmodel)
     implementation(libs.libraries.orbit.compose)
     implementation(libs.libraries.orbit.test)
+    implementation(libs.libraries.collections.immutable)
 
     implementation(libs.libraries.gus)
     implementation(libs.libraries.coil)

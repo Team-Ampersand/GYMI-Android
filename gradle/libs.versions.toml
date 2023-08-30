@@ -29,6 +29,7 @@ coil = "2.4.0"
 gus = "1.1.7"
 gauth = "v1.0.7"
 orbit = "6.0.0"
+collections-immutable = "0.3.5"
 
 [libraries]
 androidx-core = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -67,6 +68,7 @@ libraries-orbit-core = { group = "org.orbit-mvi", name = "orbit-core", version.r
 libraries-orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit" }
 libraries-orbit-compose = { group = "org.orbit-mvi", name = "orbit-compose", version.ref = "orbit" }
 libraries-orbit-test = { group = "org.orbit-mvi", name = "orbit-test", version.ref = "orbit" }
+libraries-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "collections-immutable" }
 
 [plugins]
 application = { id = "com.android.application", version.ref = "gradle" }
