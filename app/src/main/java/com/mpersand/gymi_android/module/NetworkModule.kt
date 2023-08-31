@@ -2,6 +2,7 @@ package com.mpersand.gymi_android.module
 
 import android.util.Log
 import com.mpersand.data.remote.network.AuthApi
+import com.mpersand.data.remote.network.DeclarationApi
 import com.mpersand.data.remote.util.RequestInterceptor
 import com.mpersand.gymi_android.BuildConfig
 import com.squareup.moshi.Moshi
@@ -69,4 +70,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideDeclarationApi(retrofit: Retrofit): DeclarationApi = retrofit.create(DeclarationApi::class.java)
 }
