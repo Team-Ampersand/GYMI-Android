@@ -6,5 +6,5 @@ plugins {
     alias(libs.plugins.kotlin) apply false
     alias(libs.plugins.ktlint)
     alias(libs.plugins.hilt) apply false
-    alias(libs.plugins.kapt) apply false
+    alias(libs.plugins.ksp) apply false
 }

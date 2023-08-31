@@ -6,7 +6,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.library)
     alias(libs.plugins.kotlin)
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -50,14 +50,14 @@ dependencies {
 
     implementation(libs.google.material)
     implementation(libs.google.hilt)
-    kapt(libs.google.hilt.compiler)
+    ksp(libs.google.hilt.compiler)
 
     implementation(libs.libraries.retrofit)
     implementation(libs.libraries.okhttp)
     implementation(libs.libraries.okhttp.logging.interceptor)
     implementation(libs.libraries.moshi.converter)
     implementation(libs.libraries.moshi)
-    kapt(libs.libraries.moshi.codegen)
+    ksp(libs.libraries.moshi.codegen)
 
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.android.junit)
