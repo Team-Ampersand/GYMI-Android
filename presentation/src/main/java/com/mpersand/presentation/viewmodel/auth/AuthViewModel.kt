@@ -1,12 +1,12 @@
-package com.mpersand.presentation.viewmodel
+package com.mpersand.presentation.viewmodel.auth
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mpersand.domain.model.auth.request.GauthLoginRequestModel
-import com.mpersand.domain.usecase.GauthLoginUseCase
-import com.mpersand.domain.usecase.GauthLogoutUseCase
-import com.mpersand.domain.usecase.SaveTokenUseCase
+import com.mpersand.domain.usecase.auth.GauthLoginUseCase
+import com.mpersand.domain.usecase.auth.GauthLogoutUseCase
+import com.mpersand.domain.usecase.auth.SaveTokenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

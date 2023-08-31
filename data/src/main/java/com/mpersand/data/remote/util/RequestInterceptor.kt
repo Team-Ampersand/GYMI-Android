@@ -2,7 +2,7 @@ package com.mpersand.data.remote.util
 
 import com.mpersand.data.BuildConfig
 import com.mpersand.data.local.datasource.LocalDataSource
-import com.mpersand.data.remote.model.auth.tokenReissue.request.TokenReissueRequest
+import com.mpersand.data.remote.model.auth.request.TokenReissueRequest
 import com.mpersand.domain.exception.TokenExpiredException
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi

@@ -1,4 +1,4 @@
-package com.mpersand.data.remote.model.auth.tokenReissue.request
+package com.mpersand.data.remote.model.auth.request
 
 import com.squareup.moshi.JsonClass
 import java.time.ZonedDateTime

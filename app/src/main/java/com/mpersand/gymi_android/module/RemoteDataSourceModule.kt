@@ -1,7 +1,7 @@
 package com.mpersand.gymi_android.module
 
-import com.mpersand.data.remote.datasource.AuthDataSource
-import com.mpersand.data.remote.datasource.AuthDataSourceImpl
+import com.mpersand.data.remote.datasource.auth.AuthDataSource
+import com.mpersand.data.remote.datasource.auth.AuthDataSourceImpl
 import com.mpersand.data.remote.datasource.declaration.DeclarationDataSource
 import com.mpersand.data.remote.datasource.declaration.DeclarationDataSourceImpl
 import dagger.Binds
