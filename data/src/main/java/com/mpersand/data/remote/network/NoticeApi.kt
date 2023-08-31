@@ -6,11 +6,13 @@ import com.mpersand.data.remote.model.notice.response.NoticeResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface NoticeApi {
+    @Multipart
     @POST("notice")
     suspend fun createNotice(
         @Body noticeRequest: NoticeRequest
@@ -21,6 +23,7 @@ interface NoticeApi {
         @Path("id") id: Long
     )
 
+    @Multipart
     @PATCH("notice/{id}")
     suspend fun modifyNotice(
         @Path("id") id: Long,
