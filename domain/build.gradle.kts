@@ -3,7 +3,7 @@
 plugins {
     alias(libs.plugins.library)
     alias(libs.plugins.kotlin)
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -38,7 +38,7 @@ dependencies {
 
     implementation(libs.google.material)
     implementation(libs.google.hilt)
-    kapt(libs.google.hilt.compiler)
+    ksp(libs.google.hilt.compiler)
 
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.android.junit)
