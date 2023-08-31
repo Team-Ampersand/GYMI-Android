@@ -30,6 +30,11 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
@@ -41,6 +46,7 @@ dependencies {
     ksp(libs.google.hilt.compiler)
 
     testImplementation(libs.test.junit)
+    testImplementation(libs.libraries.kotest)
     androidTestImplementation(libs.test.android.junit)
     androidTestImplementation(libs.test.espresso)
 }
