@@ -1,7 +1,7 @@
-package com.mpersand.data.remote.datasource
+package com.mpersand.data.remote.datasource.auth
 
-import com.mpersand.data.remote.model.auth.gAuthLogin.request.GauthLoginRequest
-import com.mpersand.data.remote.model.auth.gAuthLogin.response.GauthLoginResponse
+import com.mpersand.data.remote.model.auth.request.GauthLoginRequest
+import com.mpersand.data.remote.model.auth.response.GauthLoginResponse
 import com.mpersand.data.remote.network.AuthApi
 import javax.inject.Inject
 

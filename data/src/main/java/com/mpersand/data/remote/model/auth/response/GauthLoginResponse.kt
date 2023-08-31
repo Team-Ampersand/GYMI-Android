@@ -1,4 +1,4 @@
-package com.mpersand.data.remote.model.auth.gAuthLogin.response
+package com.mpersand.data.remote.model.auth.response
 
 import com.mpersand.domain.model.auth.response.GauthLoginResponseModel
 import com.squareup.moshi.JsonClass

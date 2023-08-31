@@ -21,7 +21,7 @@ import com.mpersand.domain.model.auth.request.GauthLoginRequestModel
 import com.mpersand.gymi_components.theme.GYMITheme
 import com.mpersand.gymi_components.theme.IcGYMILogo
 import com.mpersand.presentation.BuildConfig
-import com.mpersand.presentation.viewmodel.AuthViewModel
+import com.mpersand.presentation.viewmodel.auth.AuthViewModel
 import com.msg.gauthsignin.GAuthSigninWebView
 import com.msg.gauthsignin.component.GAuthButton
 import com.msg.gauthsignin.component.utils.Types
