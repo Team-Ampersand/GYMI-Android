@@ -33,7 +33,7 @@ fun MainScreen(
         )
         Spacer(modifier = Modifier.height(10.dp))
         when (getDayOfWeekType()) {
-            DayOfWeekType.MON, DayOfWeekType.WEN -> {
+            DayOfWeekType.MON, DayOfWeekType.WED -> {
                 repeat(2) {
                     BasketballHalfCourt(modifier = Modifier.weight(1f)) {}
                 }

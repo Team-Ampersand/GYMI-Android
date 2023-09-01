@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 fun getDayOfWeekType(): DayOfWeekType? = when (LocalDateTime.now().dayOfWeek) {
     DayOfWeek.MONDAY -> DayOfWeekType.MON
     DayOfWeek.TUESDAY -> DayOfWeekType.TUE
-    DayOfWeek.WEDNESDAY -> DayOfWeekType.WEN
+    DayOfWeek.WEDNESDAY -> DayOfWeekType.WED
     DayOfWeek.THURSDAY -> DayOfWeekType.THU
     DayOfWeek.FRIDAY -> DayOfWeekType.FRI
     DayOfWeek.SATURDAY -> DayOfWeekType.SAT
