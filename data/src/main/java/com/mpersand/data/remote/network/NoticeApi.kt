@@ -35,7 +35,7 @@ interface NoticeApi {
     )
 
     @GET("notice")
-    suspend fun getAllNotice(): NoticeResponse
+    suspend fun getAllNotice(): List<NoticeResponse>
 
     @GET("notice/{id}")
     suspend fun getDetailNotice(

@@ -19,7 +19,7 @@ interface NoticeDataSource {
         file: MultipartBody.Part
     )
 
-    suspend fun getAllNotice(): NoticeResponse
+    suspend fun getAllNotice(): List<NoticeResponse>
 
     suspend fun getDetailNotice(id: Long): NoticeDetailResponse
 }

@@ -1,33 +1,35 @@
 package com.mpersand.data.network.notice
 
 import com.mpersand.data.remote.model.notice.response.NoticeDetailResponse
-import com.mpersand.data.remote.model.notice.response.NoticeList
 import com.mpersand.data.remote.model.notice.response.NoticeResponse
 import com.mpersand.data.remote.network.NoticeApi
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okio.Buffer
+import java.time.LocalDateTime
+
 
 class FakeNoticeApi(
-    private var noticesResponses: NoticeResponse,
-    private var noticeDetailResponses: List<NoticeDetailResponse>,
+    private var noticesResponses: List<NoticeResponse>,
+    private val noticeDetailResponses: NoticeDetailResponse,
 ): NoticeApi {
     override suspend fun createNotice(
         notice: HashMap<String, RequestBody>,
         file: MultipartBody.Part
     ) {
-        noticesResponses.body.add(
-            NoticeList(
-                id = noticesResponses.body.size.toLong(),
-                title = noticesResponses.body[0].title,
-                content = noticesResponses.body[0].content,
-                role = noticesResponses.body[0].role,
-                createdDate = noticesResponses.body[0].createdDate,
+        noticesResponses = noticesResponses.plus(
+            NoticeResponse(
+                id = noticesResponses.size.toLong() + 1,
+                title = notice["title"]!!.requestBodyToString(),
+                content =  notice["content"]!!.requestBodyToString(),
+                role = "",
+                createdDate = LocalDateTime.now(),
             )
         )
     }
 
     override suspend fun deleteNotice(id: Long) {
-        noticesResponses.body.removeIf { it.id == id }
+        noticesResponses = noticesResponses.filterNot { it.id == id }
     }
 
     override suspend fun modifyNotice(
@@ -35,20 +37,25 @@ class FakeNoticeApi(
         notice: HashMap<String, RequestBody>,
         file: MultipartBody.Part
     ) {
-        noticesResponses.body.drop(id.toInt())
-        noticesResponses.body.add(
-            id.toInt(),
-            NoticeList(
-                id = id,
-                title = noticesResponses.body[id.toInt()].title,
-                content = noticesResponses.body[id.toInt()].content,
-                role = noticesResponses.body[id.toInt()].role,
-                createdDate = noticesResponses.body[id.toInt()].createdDate,
+        noticesResponses = noticesResponses.filterNot { it.id == id }
+        noticesResponses = noticesResponses.plus(
+            NoticeResponse(
+                id = noticesResponses.size.toLong() + 1,
+                title = notice["title"]!!.requestBodyToString(),
+                content = notice["content"]!!.requestBodyToString(),
+                role = "",
+                createdDate = LocalDateTime.now(),
             )
         )
     }
 
-    override suspend fun getAllNotice(): NoticeResponse = noticesResponses
+    override suspend fun getAllNotice(): List<NoticeResponse> = noticesResponses
 
-    override suspend fun getDetailNotice(id: Long): NoticeDetailResponse = noticeDetailResponses.single { it.id == id }
+    override suspend fun getDetailNotice(id: Long): NoticeDetailResponse = noticeDetailResponses
+}
+
+private fun RequestBody.requestBodyToString(): String {
+    val buffer = Buffer()
+    this.writeTo(buffer)
+    return buffer.readUtf8()
 }

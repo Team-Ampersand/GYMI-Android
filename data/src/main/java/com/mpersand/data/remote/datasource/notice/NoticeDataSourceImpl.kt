@@ -30,7 +30,7 @@ class NoticeDataSourceImpl @Inject constructor(
         file = file
     )
 
-    override suspend fun getAllNotice(): NoticeResponse = noticeApi.getAllNotice()
+    override suspend fun getAllNotice(): List<NoticeResponse> = noticeApi.getAllNotice()
 
     override suspend fun getDetailNotice(id: Long): NoticeDetailResponse = noticeApi.getDetailNotice(id)
 }
