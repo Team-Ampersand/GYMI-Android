@@ -1,6 +1,7 @@
 package com.mpersand.data.network.notice
 
 import com.mpersand.data.remote.model.notice.response.NoticeDetailResponse
+import com.mpersand.data.remote.model.notice.response.NoticeList
 import com.mpersand.data.remote.model.notice.response.NoticeResponse
 import com.mpersand.data.remote.network.NoticeApi
 import okhttp3.MultipartBody
@@ -8,27 +9,25 @@ import okhttp3.RequestBody
 
 class FakeNoticeApi(
     private var noticesResponses: NoticeResponse,
-    private var noticeDetailResponse: NoticeDetailResponse,
-    private var noticeDetailResponses: MutableList<NoticeDetailResponse>,
+    private var noticeDetailResponses: List<NoticeDetailResponse>,
 ): NoticeApi {
     override suspend fun createNotice(
         notice: HashMap<String, RequestBody>,
         file: MultipartBody.Part
     ) {
-        noticeDetailResponses.add(
-            NoticeDetailResponse(
-                id = noticeDetailResponses.size.toLong(),
-                title = noticeDetailResponse.title,
-                content = noticeDetailResponse.content,
-                role = noticeDetailResponse.role,
-                noticeFile = noticeDetailResponse.noticeFile,
-                createdDate = noticeDetailResponse.createdDate
+        noticesResponses.body.add(
+            NoticeList(
+                id = noticesResponses.body.size.toLong(),
+                title = noticesResponses.body[0].title,
+                content = noticesResponses.body[0].content,
+                role = noticesResponses.body[0].role,
+                createdDate = noticesResponses.body[0].createdDate,
             )
         )
     }
 
     override suspend fun deleteNotice(id: Long) {
-        noticeDetailResponses.removeIf { it.id == id }
+        noticesResponses.body.removeIf { it.id == id }
     }
 
     override suspend fun modifyNotice(
@@ -36,15 +35,15 @@ class FakeNoticeApi(
         notice: HashMap<String, RequestBody>,
         file: MultipartBody.Part
     ) {
-        noticeDetailResponses.drop(id.toInt())
-        noticeDetailResponses.add(
-            NoticeDetailResponse(
-                id = noticeDetailResponses.size.toLong(),
-                title = noticeDetailResponse.title,
-                content = noticeDetailResponse.content,
-                role = noticeDetailResponse.role,
-                noticeFile = noticeDetailResponse.noticeFile,
-                createdDate = noticeDetailResponse.createdDate
+        noticesResponses.body.drop(id.toInt())
+        noticesResponses.body.add(
+            id.toInt(),
+            NoticeList(
+                id = id,
+                title = noticesResponses.body[id.toInt()].title,
+                content = noticesResponses.body[id.toInt()].content,
+                role = noticesResponses.body[id.toInt()].role,
+                createdDate = noticesResponses.body[id.toInt()].createdDate,
             )
         )
     }

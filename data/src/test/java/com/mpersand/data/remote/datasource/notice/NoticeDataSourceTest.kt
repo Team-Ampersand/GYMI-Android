@@ -19,8 +19,7 @@ class NoticeDataSourceTest : BehaviorSpec() {
     private val dataSource = NoticeDataSourceImpl(
         noticeApi = FakeNoticeApi(
             noticesResponses = noticeResponse,
-            noticeDetailResponse = noticeDetailResponse,
-            noticeDetailResponses = mutableListOf(noticeDetailResponse)
+            noticeDetailResponses = noticeDetailResponse
         )
     )
 
@@ -78,7 +77,7 @@ class NoticeDataSourceTest : BehaviorSpec() {
 
     companion object {
         private val noticeResponse = NoticeResponse(
-            body = listOf(
+            body = mutableListOf(
                 NoticeList(
                     id = 1,
                     title = "title 1",
@@ -89,19 +88,22 @@ class NoticeDataSourceTest : BehaviorSpec() {
             )
         )
 
-        private val noticeDetailResponse = NoticeDetailResponse(
-            id = 1,
-            title = "title 1",
-            content = "content 1",
-            role = "",
-            noticeFile = listOf(
-                NoticeFile(
-                    id = 1,
-                    url = ""
-                )
-            ),
-            createdDate = LocalDateTime.now()
+        private val noticeDetailResponse = listOf(
+            NoticeDetailResponse(
+                id = 1,
+                title = "title 1",
+                content = "content 1",
+                role = "",
+                noticeFile = listOf(
+                    NoticeFile(
+                        id = 1,
+                        url = ""
+                    )
+                ),
+                createdDate = LocalDateTime.now()
+            )
         )
+
 
         var noticeMap = HashMap<String, RequestBody>()
 
