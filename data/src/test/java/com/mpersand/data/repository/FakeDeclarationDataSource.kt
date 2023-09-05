@@ -9,9 +9,9 @@ class FakeDeclarationDataSource(private var declarations: List<DeclarationRespon
 
     override suspend fun getDeclarationById(id: Long): DeclarationResponse = declarations.single { it.id == id }
 
-    override suspend fun submitDeclaration(body: DeclarationRequest) {
+    override suspend fun submitDeclaration(courtId: Long, body: DeclarationRequest) {
         declarations = declarations.plus(
-            DeclarationResponse(id = declarations.size.toLong(), type = body.type, content = body.content)
+            DeclarationResponse(id = courtId, type = body.type, content = body.content)
         )
     }
 }

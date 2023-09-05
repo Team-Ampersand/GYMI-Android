@@ -31,6 +31,7 @@ class DeclarationRepositoryTest : BehaviorSpec() {
 
             When("코트를 신고한다") {
                 repository.submitDeclaration(
+                    courtId = 1,
                     body = DeclarationRequestModel(type = DeclarationTypeModel.TIME, content = null)
                 )
                 Then("신고 내역이 추가된다") {

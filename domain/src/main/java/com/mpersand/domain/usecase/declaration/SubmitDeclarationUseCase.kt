@@ -7,5 +7,6 @@ import javax.inject.Inject
 class SubmitDeclarationUseCase @Inject constructor(
     private val repository: DeclarationRepository
 ) {
-    suspend operator fun invoke(body: DeclarationRequestModel) = kotlin.runCatching { repository.submitDeclaration(body) }
+    suspend operator fun invoke(courtId: Long, body: DeclarationRequestModel) =
+        kotlin.runCatching { repository.submitDeclaration(courtId, body) }
 }

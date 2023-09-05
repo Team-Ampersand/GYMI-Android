@@ -8,5 +8,5 @@ interface DeclarationRepository {
 
     suspend fun getDeclarationById(id: Long): DeclarationResponseModel
 
-    suspend fun submitDeclaration(body: DeclarationRequestModel)
+    suspend fun submitDeclaration(courtId: Long, body: DeclarationRequestModel)
 }

@@ -12,5 +12,6 @@ class DeclarationDataSourceImpl @Inject constructor(
 
     override suspend fun getDeclarationById(id: Long): DeclarationResponse = declarationApi.getDeclarationById(id)
 
-    override suspend fun submitDeclaration(body: DeclarationRequest) = declarationApi.submitDeclaration(body)
+    override suspend fun submitDeclaration(courtId: Long, body: DeclarationRequest) =
+        declarationApi.submitDeclaration(courtId, body)
 }

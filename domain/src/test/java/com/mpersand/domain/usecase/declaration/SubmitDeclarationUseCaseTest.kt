@@ -15,6 +15,7 @@ class SubmitDeclarationUseCaseTest : BehaviorSpec() {
         Given("신고 내역 리스트가 존재한다") {
             When("코트를 신고한다") {
                 useCase(
+                    courtId = 1,
                     body = DeclarationRequestModel(type = DeclarationTypeModel.TIME, content = null)
                 )
                 Then("신고 내역이 추가된다") {
