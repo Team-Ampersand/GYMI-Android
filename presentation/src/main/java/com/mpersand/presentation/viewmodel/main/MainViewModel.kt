@@ -19,9 +19,9 @@ class MainViewModel @Inject constructor(
 ): ContainerHost<MainState, MainSideEffect>, ViewModel() {
     override val container = container<MainState, MainSideEffect>(MainState())
 
-    fun submitDeclaration(body: DeclarationRequestModel) = intent {
+    fun submitDeclaration(courtId: Long, body: DeclarationRequestModel) = intent {
         viewModelScope.launch {
-            submitDeclarationUseCase(body)
+            submitDeclarationUseCase(courtId, body)
                 .onSuccess {
                     postSideEffect(MainSideEffect.SnackBar("", ""))
 

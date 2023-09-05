@@ -31,6 +31,7 @@ class DeclarationDataSourceTest : BehaviorSpec() {
 
             When("코트를 신고한다") {
                 dataSource.submitDeclaration(
+                    courtId = 1,
                     body = DeclarationRequest(type = DeclarationType.TIME, content = null)
                 )
                 Then("신고 내역이 추가된다") {

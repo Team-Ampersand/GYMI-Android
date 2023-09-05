@@ -8,5 +8,5 @@ interface DeclarationDataSource {
 
     suspend fun getDeclarationById(id: Long): DeclarationResponse
 
-    suspend fun submitDeclaration(body: DeclarationRequest)
+    suspend fun submitDeclaration(courtId: Long, body: DeclarationRequest)
 }

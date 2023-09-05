@@ -16,8 +16,9 @@ interface DeclarationApi {
         @Path("id") id: Long
     ): DeclarationResponse
 
-    @POST("declaration")
+    @POST("declaration/{courtId}")
     suspend fun submitDeclaration(
+        @Path("courtId") courtId: Long,
         @Body body: DeclarationRequest
     )
 }
