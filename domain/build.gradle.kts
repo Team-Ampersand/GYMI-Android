@@ -49,4 +49,6 @@ dependencies {
     testImplementation(libs.libraries.kotest)
     androidTestImplementation(libs.test.android.junit)
     androidTestImplementation(libs.test.espresso)
+
+    implementation(libs.libraries.okhttp)
 }
