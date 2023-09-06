@@ -1,9 +1,11 @@
 package com.mpersand.gymi_android.module
 
 import com.mpersand.data.repository.AuthRepositoryImpl
+import com.mpersand.data.repository.CourtRepositoryImpl
 import com.mpersand.data.repository.DeclarationRepositoryImpl
 import com.mpersand.data.repository.NoticeRepositoryImpl
 import com.mpersand.domain.repository.AuthRepository
+import com.mpersand.domain.repository.CourtRepository
 import com.mpersand.domain.repository.DeclarationRepository
 import com.mpersand.domain.repository.NoticeRepository
 import dagger.Binds
@@ -22,4 +24,7 @@ interface RepositoryModule {
 
     @Binds
     fun bindsNoticeRepository(noticeRepositoryImpl: NoticeRepositoryImpl): NoticeRepository
+
+    @Binds
+    fun bindsCourtRepository(courtRepositoryImpl: CourtRepositoryImpl): CourtRepository
 }

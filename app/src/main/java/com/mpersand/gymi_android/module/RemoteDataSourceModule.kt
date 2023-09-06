@@ -2,6 +2,8 @@ package com.mpersand.gymi_android.module
 
 import com.mpersand.data.remote.datasource.auth.AuthDataSource
 import com.mpersand.data.remote.datasource.auth.AuthDataSourceImpl
+import com.mpersand.data.remote.datasource.court.CourtDataSource
+import com.mpersand.data.remote.datasource.court.CourtDataSourceImpl
 import com.mpersand.data.remote.datasource.declaration.DeclarationDataSource
 import com.mpersand.data.remote.datasource.declaration.DeclarationDataSourceImpl
 import com.mpersand.data.remote.datasource.notice.NoticeDataSource
@@ -22,4 +24,7 @@ interface RemoteDataSourceModule {
 
     @Binds
     fun bindsNoticeDataSource(noticeDataSourceImpl: NoticeDataSourceImpl): NoticeDataSource
+
+    @Binds
+    fun bindsCourtDataSource(courtDataSourceImpl: CourtDataSourceImpl): CourtDataSource
 }
