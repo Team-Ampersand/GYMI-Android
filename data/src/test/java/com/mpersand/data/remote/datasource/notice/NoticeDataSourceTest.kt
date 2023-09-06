@@ -69,7 +69,7 @@ class NoticeDataSourceTest : BehaviorSpec() {
                 )
                 Then("공지사항이 수정된다") {
                     val modifiedNotice = dataSource.getAllNotice()
-                    modifiedNotice.single { it.id == 1L }.title shouldBe "modifiedTitle"
+                    modifiedNotice.single { it.id == 1L }.title shouldBe "modified title"
                 }
             }
         }
