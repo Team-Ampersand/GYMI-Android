@@ -1,5 +1,8 @@
 package com.mpersand.data.remote.model.court.response
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class CourtResponse(
     val id: Long,
     val limit: Long,
