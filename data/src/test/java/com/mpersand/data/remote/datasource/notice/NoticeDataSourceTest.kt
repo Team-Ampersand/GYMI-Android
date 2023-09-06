@@ -59,8 +59,8 @@ class NoticeDataSourceTest : BehaviorSpec() {
             }
 
             When("공지사항을 수정한다") {
-                val modifiedTitle = "modified title"
                 noticeMap["title"] = "modified title".toRequestBody("text/plain".toMediaType())
+                noticeMap["content"] = "modified content".toRequestBody("text/plain".toMediaType())
                 dataSource.modifyNotice(
                     id = 1,
                     notice = noticeMap,
@@ -68,7 +68,7 @@ class NoticeDataSourceTest : BehaviorSpec() {
                 )
                 Then("공지사항이 수정된다") {
                     val modifiedNotice = dataSource.getAllNotice()
-                    modifiedNotice.single { it.id == 1L }.title shouldBe modifiedTitle
+                    modifiedNotice.single { it.id == 1L }.title shouldBe "modified title"
                 }
             }
         }
