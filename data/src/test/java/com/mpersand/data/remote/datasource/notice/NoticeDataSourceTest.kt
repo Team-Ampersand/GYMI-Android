@@ -41,7 +41,6 @@ class NoticeDataSourceTest : BehaviorSpec() {
                 dataSource.deleteNotice(2)
                 Then("공지사항이 삭제된다") {
                     dataSource.getAllNotice().size shouldBe 1
-                    println(dataSource.getAllNotice())
                 }
             }
 
