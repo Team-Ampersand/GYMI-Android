@@ -1,5 +1,6 @@
 package com.mpersand.data.remote.model.notice.response
 
+import com.mpersand.domain.model.notice.response.NoticeDetailResponseModel
 import com.squareup.moshi.JsonClass
 import java.time.LocalDateTime
 
@@ -11,4 +12,13 @@ data class NoticeDetailResponse(
     val role: String,
     val noticeFile: List<NoticeFile>,
     val createdDate: LocalDateTime
+)
+
+fun NoticeDetailResponse.asNoticeDetailResponseModel() = NoticeDetailResponseModel(
+    id = id,
+    title = title,
+    content = content,
+    role = role,
+    noticeFile = noticeFile.map { it.asNoticeFileModel() },
+    createdDate = createdDate
 )
