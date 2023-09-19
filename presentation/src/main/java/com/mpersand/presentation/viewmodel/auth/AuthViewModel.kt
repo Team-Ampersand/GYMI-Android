@@ -32,8 +32,8 @@ class AuthViewModel @Inject constructor(
                     saveTokenUseCase(
                         accessToken = it.accessToken,
                         refreshToken = it.refreshToken,
-                        accessExp = it.accessExp.toString(),
-                        refreshExp = it.refreshExp.toString()
+                        accessExp = it.accessExp,
+                        refreshExp = it.refreshExp
                     )
                     reduce {
                         state.copy(

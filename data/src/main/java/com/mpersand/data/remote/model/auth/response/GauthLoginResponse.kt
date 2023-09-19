@@ -8,8 +8,8 @@ import java.time.ZonedDateTime
 data class GauthLoginResponse(
     val accessToken: String,
     val refreshToken: String,
-    val accessExp: ZonedDateTime,
-    val refreshExp: ZonedDateTime
+    val accessExp: String,
+    val refreshExp: String
 )
 
 fun GauthLoginResponse.asGauthLoginResponseModel() = GauthLoginResponseModel(

@@ -15,7 +15,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import javax.inject.Inject
 
 class RequestInterceptor @Inject constructor(
@@ -28,7 +28,7 @@ class RequestInterceptor @Inject constructor(
         val builder = request.newBuilder()
         val path = request.url.encodedPath
         val ignorePath = listOf("/auth")
-        val currentTime = LocalDateTime.now()
+        val currentTime = ZonedDateTime.now()
 
         ignorePath.forEach {
             if (path.contains(it)) {
@@ -37,8 +37,8 @@ class RequestInterceptor @Inject constructor(
         }
 
         val refreshToken = runBlocking { localDataSource.getRefreshToken().first() }
-        val accessTokenExp = runBlocking { LocalDateTime.parse(localDataSource.getAccessTokenExp().first()) }
-        val refreshTokenExp = runBlocking { LocalDateTime.parse(localDataSource.getRefreshTokenExp().first()) }
+        val accessTokenExp = runBlocking { ZonedDateTime.parse(localDataSource.getAccessTokenExp().first()) }
+        val refreshTokenExp = runBlocking { ZonedDateTime.parse(localDataSource.getRefreshTokenExp().first()) }
 
         if (currentTime.isAfter(refreshTokenExp)) throw TokenExpiredException()
 
@@ -61,8 +61,8 @@ class RequestInterceptor @Inject constructor(
                     localDataSource.saveToken(
                         accessToken = token.accessToken,
                         refreshToken = token.refreshToken,
-                        accessExp = token.accessExp.toString(),
-                        refreshExp = token.refreshExp.toString()
+                        accessExp = token.accessExp,
+                        refreshExp = token.refreshExp
                     )
                 }
             } else throw TokenExpiredException()
