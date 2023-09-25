@@ -7,12 +7,12 @@ import retrofit2.http.Query
 
 interface ReservationApi {
     @POST("reservation")
-    fun reserveCourt(
+    suspend fun reserveCourt(
         @Query("courtNumber") courtNumber: CourtNumber
     )
 
     @DELETE("reservation")
-    fun cancelReservation(
+    suspend fun cancelReservation(
         @Query("courtNumber") courtNumber: CourtNumber
     )
 }
