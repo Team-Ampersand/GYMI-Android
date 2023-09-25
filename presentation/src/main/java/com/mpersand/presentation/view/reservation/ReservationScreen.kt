@@ -10,6 +10,7 @@ import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -50,6 +51,10 @@ fun ReservationScreen(
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
     var isDone by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        reservationViewModel.getAllCourts()
+    }
 
     if (showDialog) {
         GYMIDialog(onDismissRequest = { showDialog = false }) {
@@ -106,10 +111,17 @@ fun ReservationScreen(
                 color = GYMITheme.colors.bw
             )
             Spacer(modifier = Modifier.height(10.dp))
+            val allCourts = uiState.allCourts
             when (getDayOfWeekType()) {
                 DayOfWeekType.MON, DayOfWeekType.WED -> {
                     repeat(2) { column ->
-                        BasketballHalfCourt(modifier = Modifier.weight(1f)) { row ->
+                        BasketballHalfCourt(
+                            modifier = Modifier.weight(1f),
+                            checkReserved = { row ->
+                                val index = (column + 1) * (row + 1)
+                                allCourts[index].count == allCourts[index].maxCount
+                            }
+                        ) { row ->
                             val (xIndex, yIndex) = (row + 1) to (column + 1)
                             when (xIndex * yIndex) {
                                 1 -> CourtNumberModel.FIRST
@@ -123,7 +135,10 @@ fun ReservationScreen(
                 }
                 DayOfWeekType.TUE, DayOfWeekType.THU -> {
                     repeat(4) { index ->
-                        BadmintonHalfCourt(modifier = Modifier.weight(1f)) {
+                        BadmintonHalfCourt(
+                            modifier = Modifier.weight(1f),
+                            isReserved = allCourts[index].count == allCourts[index].maxCount
+                        ) {
                             selectedCourt = when (index + 1) {
                                 1 -> CourtNumberModel.FIRST
                                 2 -> CourtNumberModel.SECOND
@@ -135,7 +150,10 @@ fun ReservationScreen(
                     }
                 }
                 DayOfWeekType.FRI -> {
-                    BasketballHalfCourt(modifier = Modifier.weight(4f)) {
+                    BasketballHalfCourt(
+                        modifier = Modifier.weight(4f),
+                        checkReserved = { allCourts[it].count == allCourts[it].maxCount }
+                    ) {
                         selectedCourt = when (it + 1) {
                             1 -> CourtNumberModel.FIRST
                             else -> CourtNumberModel.SECOND
@@ -143,7 +161,10 @@ fun ReservationScreen(
                         reservationViewModel.reserveCourt(selectedCourt!!)
                     }
                     repeat(2) {
-                        BadmintonHalfCourt(modifier = Modifier.weight(1f)) {
+                        BadmintonHalfCourt(
+                            modifier = Modifier.weight(1f),
+                            isReserved = allCourts[it + 2].count == allCourts[it + 2].maxCount
+                        ) {
                             selectedCourt = when (it + 3) {
                                 3 -> CourtNumberModel.THREE
                                 else -> CourtNumberModel.FOUR
