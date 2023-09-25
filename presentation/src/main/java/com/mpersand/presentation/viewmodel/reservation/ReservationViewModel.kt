@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ReservationViewModel @Inject constructor(
     private val reserveCourtUseCase: ReserveCourtUseCase,
-    private val cancelReservationUseCase: CancelReservationUseCase
+    private val cancelReservationUseCase: CancelReservationUseCase,
 ) : ContainerHost<ReservationState, ReservationSideEffect>, ViewModel() {
     override val container = container<ReservationState, ReservationSideEffect>(ReservationState())
     fun reserveCourt(courtNumberModel: CourtNumberModel) = intent {
@@ -33,6 +33,13 @@ class ReservationViewModel @Inject constructor(
 
                     reduce { state.copy(reserved = true) }
                 }.onFailure {
+                    postSideEffect(
+                        ReservationSideEffect.SnackBar(
+                            title = "코트 예약에 실패하였습니다.",
+                            content = it.message ?: "알 수 없는 오류로 예약에 실패하였습니다."
+                        )
+                    )
+
                     reduce { state.copy(error = it.message) }
                 }
         }
