@@ -11,7 +11,7 @@ import com.mpersand.gymi_components.component.court.GYMIBasketballCourt
 @Composable
 fun ColumnScope.BasketballHalfCourt(
     modifier: Modifier = Modifier,
-    isReserved: Boolean = false,
+    checkReserved: (Int) -> Boolean = { false },
     onClick: (Int) -> Unit
 ) {
     Row(modifier = modifier) {
@@ -23,7 +23,7 @@ fun ColumnScope.BasketballHalfCourt(
                     .graphicsLayer {
                         if (it % 2 != 0) rotationY = 180f
                     },
-                isReserved = isReserved,
+                isReserved = checkReserved(it),
                 onClick = { onClick(it) }
             )
         }

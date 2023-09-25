@@ -2,7 +2,9 @@ package com.mpersand.presentation.viewmodel.reservation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mpersand.domain.model.court.response.CourtResponseModel
 import com.mpersand.domain.model.reservation.request.CourtNumberModel
+import com.mpersand.domain.usecase.court.GetAllCourtsUseCase
 import com.mpersand.domain.usecase.reservation.CancelReservationUseCase
 import com.mpersand.domain.usecase.reservation.ReserveCourtUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +20,7 @@ import javax.inject.Inject
 class ReservationViewModel @Inject constructor(
     private val reserveCourtUseCase: ReserveCourtUseCase,
     private val cancelReservationUseCase: CancelReservationUseCase,
+    private val getAllCourtsUseCase: GetAllCourtsUseCase
 ) : ContainerHost<ReservationState, ReservationSideEffect>, ViewModel() {
     override val container = container<ReservationState, ReservationSideEffect>(ReservationState())
     fun reserveCourt(courtNumberModel: CourtNumberModel) = intent {
@@ -57,9 +60,21 @@ class ReservationViewModel @Inject constructor(
                 }
         }
     }
+
+    fun getAllCourts() = intent {
+        viewModelScope.launch {
+            getAllCourtsUseCase()
+                .onSuccess {
+                    reduce { state.copy(allCourts = it) }
+                }.onFailure {
+                    reduce { state.copy(error = it.message) }
+                }
+        }
+    }
 }
 
 data class ReservationState(
+    val allCourts: List<CourtResponseModel> = emptyList(),
     val reserved: CourtNumberModel? = null,
     val loading: Boolean = true,
     val error: String? = null
