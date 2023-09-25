@@ -27,7 +27,8 @@ class ReservationViewModel @Inject constructor(
                     postSideEffect(
                         ReservationSideEffect.SnackBar(
                             title = "코트 예약이 완료되었습니다.",
-                            content = "코트를 깨끗하게 사용해주세요.\n규칙을 어길시 체육관 이용이 금지될 수 있습니다!"
+                            content = "코트를 깨끗하게 사용해주세요.\n규칙을 어길시 체육관 이용이 금지될 수 있습니다!",
+                            isDone = true
                         )
                     )
 
@@ -36,7 +37,8 @@ class ReservationViewModel @Inject constructor(
                     postSideEffect(
                         ReservationSideEffect.SnackBar(
                             title = "코트 예약에 실패하였습니다.",
-                            content = it.message ?: "알 수 없는 오류로 예약에 실패하였습니다."
+                            content = it.message ?: "알 수 없는 오류로 예약에 실패하였습니다.",
+                            isDone = false
                         )
                     )
 
@@ -64,5 +66,5 @@ data class ReservationState(
 )
 
 sealed class ReservationSideEffect {
-    data class SnackBar(val title: String, val content: String) : ReservationSideEffect()
+    data class SnackBar(val title: String, val content: String, val isDone: Boolean) : ReservationSideEffect()
 }
