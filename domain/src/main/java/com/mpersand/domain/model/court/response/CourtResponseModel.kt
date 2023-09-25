@@ -1,13 +1,19 @@
 package com.mpersand.domain.model.court.response
 
-import com.mpersand.domain.model.util.CourtTypeModel
-import com.mpersand.domain.model.util.DayOfWeekTypeModel
-import com.mpersand.domain.model.util.SportTypeModel
-
 data class CourtResponseModel(
     val id: Long,
-    val limit: Long,
-    val possibleDay: DayOfWeekTypeModel,
-    val sportTypeModel: SportTypeModel,
-    val courtTypeModel: CourtTypeModel
+    val name: String,
+    val count: Int,
+    val maxCount: Int,
+    val courtNumber: String,
+    val week: String,
+    val dayPeriod: String,
+    val reservationUsers: List<ReservationUserModel>
 )
+
+data class ReservationUserModel(
+    val id: String,
+    val name: String,
+    val classNum: String
+)
+

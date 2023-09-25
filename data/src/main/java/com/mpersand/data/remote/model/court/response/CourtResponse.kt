@@ -1,27 +1,41 @@
 package com.mpersand.data.remote.model.court.response
 
-import com.mpersand.data.remote.model.util.CourtType
-import com.mpersand.data.remote.model.util.DayOfWeekType
-import com.mpersand.data.remote.model.util.SportType
-import com.mpersand.data.remote.model.util.asCourtTypeModel
-import com.mpersand.data.remote.model.util.asDayOfWeekTypeModel
-import com.mpersand.data.remote.model.util.asSportTypeModel
 import com.mpersand.domain.model.court.response.CourtResponseModel
+import com.mpersand.domain.model.court.response.ReservationUserModel
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class CourtResponse(
     val id: Long,
-    val limit: Long,
-    val possibleDay: DayOfWeekType,
-    val sportType: SportType,
-    val courtType: CourtType
+    val name: String,
+    val count: Int,
+    val maxCount: Int,
+    val courtNumber: String,
+    val week: String,
+    val dayPeriod: String,
+    val reservationUsers: List<ReservationUser>
+)
+
+@JsonClass(generateAdapter = true)
+data class ReservationUser(
+    val id: String,
+    val name: String,
+    val classNum: String
 )
 
 fun CourtResponse.asCourtResponseModel() = CourtResponseModel(
     id = id,
-    limit = limit,
-    possibleDay = possibleDay.asDayOfWeekTypeModel(),
-    sportTypeModel = sportType.asSportTypeModel(),
-    courtTypeModel = courtType.asCourtTypeModel()
+    name = name,
+    count = count,
+    maxCount = maxCount,
+    courtNumber = courtNumber,
+    week = week,
+    dayPeriod = dayPeriod,
+    reservationUsers = reservationUsers.map { it.asReservationUserModel() }
+)
+
+fun ReservationUser.asReservationUserModel() = ReservationUserModel(
+    id = id,
+    name = name,
+    classNum = classNum
 )
