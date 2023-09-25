@@ -27,16 +27,18 @@ class ReservationViewModel @Inject constructor(
                     postSideEffect(
                         ReservationSideEffect.SnackBar(
                             title = "코트 예약이 완료되었습니다.",
-                            content = "코트를 깨끗하게 사용해주세요.\n규칙을 어길시 체육관 이용이 금지될 수 있습니다!"
+                            content = "코트를 깨끗하게 사용해주세요.\n규칙을 어길시 체육관 이용이 금지될 수 있습니다!",
+                            isDone = true
                         )
                     )
 
-                    reduce { state.copy(reserved = true) }
+                    reduce { state.copy(reserved = courtNumberModel) }
                 }.onFailure {
                     postSideEffect(
                         ReservationSideEffect.SnackBar(
                             title = "코트 예약에 실패하였습니다.",
-                            content = it.message ?: "알 수 없는 오류로 예약에 실패하였습니다."
+                            content = it.message ?: "알 수 없는 오류로 예약에 실패하였습니다.",
+                            isDone = false
                         )
                     )
 
@@ -49,7 +51,7 @@ class ReservationViewModel @Inject constructor(
         viewModelScope.launch {
             cancelReservationUseCase(courtNumberModel)
                 .onSuccess {
-                    reduce { state.copy(reserved = false) }
+                    reduce { state.copy(reserved = null) }
                 }.onFailure {
                     reduce { state.copy(error = it.message) }
                 }
@@ -58,11 +60,11 @@ class ReservationViewModel @Inject constructor(
 }
 
 data class ReservationState(
-    val reserved: Boolean = false,
+    val reserved: CourtNumberModel? = null,
     val loading: Boolean = true,
     val error: String? = null
 )
 
 sealed class ReservationSideEffect {
-    data class SnackBar(val title: String, val content: String) : ReservationSideEffect()
+    data class SnackBar(val title: String, val content: String, val isDone: Boolean) : ReservationSideEffect()
 }
