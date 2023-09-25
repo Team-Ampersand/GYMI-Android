@@ -35,6 +35,7 @@ fun ReservationScreen(
     var showDialog by remember { mutableStateOf(false) }
     /* TODO: 예약 현황에 따라 처리 */
     var reserved by remember { mutableStateOf<CourtNumberModel?>(null) }
+    var selectedCourt by remember { mutableStateOf<CourtNumberModel?>(null) }
 
     if (showDialog) {
         GYMIDialog(onDismissRequest = { showDialog = false }) {
@@ -65,19 +66,48 @@ fun ReservationScreen(
         Spacer(modifier = Modifier.height(10.dp))
         when (getDayOfWeekType()) {
             DayOfWeekType.MON, DayOfWeekType.WED -> {
-                repeat(2) {
-                    BasketballHalfCourt(modifier = Modifier.weight(1f)) {}
+                repeat(2) { column ->
+                    BasketballHalfCourt(modifier = Modifier.weight(1f)) { row ->
+                        val (xIndex, yIndex) = (row + 1) to (column + 1)
+                        when (xIndex * yIndex) {
+                            1 -> CourtNumberModel.FIRST
+                            2 -> CourtNumberModel.SECOND
+                            3 -> CourtNumberModel.THREE
+                            4 -> CourtNumberModel.FOUR
+                        }
+                        reservationViewModel.reserveCourt(selectedCourt!!)
+                    }
                 }
             }
             DayOfWeekType.TUE, DayOfWeekType.THU -> {
-                repeat(4) {
-                    BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
+                repeat(4) { index ->
+                    BadmintonHalfCourt(modifier = Modifier.weight(1f)) {
+                        selectedCourt = when (index + 1) {
+                            1 -> CourtNumberModel.FIRST
+                            2 -> CourtNumberModel.SECOND
+                            3 -> CourtNumberModel.THREE
+                            else -> CourtNumberModel.FOUR
+                        }
+                        reservationViewModel.reserveCourt(selectedCourt!!)
+                    }
                 }
             }
             DayOfWeekType.FRI -> {
-                BasketballHalfCourt(modifier = Modifier.weight(4f)) {}
+                BasketballHalfCourt(modifier = Modifier.weight(4f)) {
+                    selectedCourt = when (it + 1) {
+                        1 -> CourtNumberModel.FIRST
+                        else -> CourtNumberModel.SECOND
+                    }
+                    reservationViewModel.reserveCourt(selectedCourt!!)
+                }
                 repeat(2) {
-                    BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
+                    BadmintonHalfCourt(modifier = Modifier.weight(1f)) {
+                        selectedCourt = when (it + 3) {
+                            3 -> CourtNumberModel.THREE
+                            else -> CourtNumberModel.FOUR
+                        }
+                        reservationViewModel.reserveCourt(selectedCourt!!)
+                    }
                 }
             }
             else -> { } // TODO: 예약 가능한 요일이 아닌경우
