@@ -1,9 +1,7 @@
 package com.mpersand.data.remote.datasource.court
 
 import com.mpersand.data.remote.model.court.response.CourtResponse
-import com.mpersand.data.remote.model.util.CourtType
-import com.mpersand.data.remote.model.util.DayOfWeekType
-import com.mpersand.data.remote.model.util.SportType
+import com.mpersand.data.remote.model.court.response.ReservationUser
 import com.mpersand.data.remote.network.CourtApi
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.Runs
@@ -48,10 +46,16 @@ class CourtDataSourceTest : BehaviorSpec() {
         private val allCourts = listOf(
             CourtResponse(
                 id = 1,
-                limit = 4,
-                possibleDay = DayOfWeekType.MON,
-                sportType = SportType.BASKETBALL,
-                courtType = CourtType.HALF
+                name = "1번 코트",
+                count = 3,
+                maxCount = 8,
+                courtNumber = "FIRST",
+                week = "MONDAY",
+                dayPeriod = "LUNCH",
+                reservationUsers = listOf(
+                    ReservationUser("1", "박성현", "3208"),
+                    ReservationUser("2", "조현서", "3117")
+                )
             )
         )
     }
