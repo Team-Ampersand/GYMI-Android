@@ -25,16 +25,17 @@ import com.mpersand.presentation.view.component.BasketballHalfCourt
 import com.mpersand.presentation.view.component.CourtButtonType
 import com.mpersand.presentation.view.component.CourtModal
 import com.mpersand.presentation.viewmodel.reservation.ReservationViewModel
+import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
 fun ReservationScreen(
     modifier: Modifier = Modifier,
     reservationViewModel: ReservationViewModel = hiltViewModel()
 ) {
+    val uiState by reservationViewModel.collectAsState()
+    val reserved by remember { mutableStateOf(uiState.reserved) } /* TODO: 예약 현황에 따라 처리 */
 
     var showDialog by remember { mutableStateOf(false) }
-    /* TODO: 예약 현황에 따라 처리 */
-    var reserved by remember { mutableStateOf<CourtNumberModel?>(null) }
     var selectedCourt by remember { mutableStateOf<CourtNumberModel?>(null) }
 
     if (showDialog) {
