@@ -31,7 +31,7 @@ class ReservationViewModel @Inject constructor(
                         )
                     )
 
-                    reduce { state.copy(reserved = true) }
+                    reduce { state.copy(reserved = courtNumberModel) }
                 }.onFailure {
                     postSideEffect(
                         ReservationSideEffect.SnackBar(
@@ -49,7 +49,7 @@ class ReservationViewModel @Inject constructor(
         viewModelScope.launch {
             cancelReservationUseCase(courtNumberModel)
                 .onSuccess {
-                    reduce { state.copy(reserved = false) }
+                    reduce { state.copy(reserved = null) }
                 }.onFailure {
                     reduce { state.copy(error = it.message) }
                 }
@@ -58,7 +58,7 @@ class ReservationViewModel @Inject constructor(
 }
 
 data class ReservationState(
-    val reserved: Boolean = false,
+    val reserved: CourtNumberModel? = null,
     val loading: Boolean = true,
     val error: String? = null
 )
