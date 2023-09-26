@@ -135,22 +135,12 @@ fun ReservationScreen(
                             },
                             onClick = { row ->
                                 val (xIndex, yIndex) = (row + 1) to (column + 1)
-                                selectedCourt = when (xIndex * yIndex) {
-                                    1 -> CourtNumberModel.FIRST
-                                    2 -> CourtNumberModel.SECOND
-                                    3 -> CourtNumberModel.THREE
-                                    else -> CourtNumberModel.FOUR
-                                }
+                                selectedCourt = setSelectedCourt(xIndex * yIndex)
                                 reservationViewModel.reserveCourt(selectedCourt!!)
                             },
                             onLongClick = { row ->
                                 val (xIndex, yIndex) = (row + 1) to (column + 1)
-                                selectedCourt = when (xIndex * yIndex) {
-                                    1 -> CourtNumberModel.FIRST
-                                    2 -> CourtNumberModel.SECOND
-                                    3 -> CourtNumberModel.THREE
-                                    else -> CourtNumberModel.FOUR
-                                }
+                                selectedCourt = setSelectedCourt(xIndex * yIndex)
                                 showDialog = true
                             }
                         )
@@ -187,17 +177,11 @@ fun ReservationScreen(
                         modifier = Modifier.weight(4f),
                         checkReserved = { allCourts[it].count == allCourts[it].maxCount },
                         onClick = {
-                            selectedCourt = when (it + 1) {
-                                1 -> CourtNumberModel.FIRST
-                                else -> CourtNumberModel.SECOND
-                            }
+                            selectedCourt = setSelectedCourt(it + 1)
                             reservationViewModel.reserveCourt(selectedCourt!!)
                         },
                         onLongClick = {
-                            selectedCourt = when (it + 1) {
-                                1 -> CourtNumberModel.FIRST
-                                else -> CourtNumberModel.SECOND
-                            }
+                            selectedCourt = setSelectedCourt(it + 1)
                             showDialog = true
                         }
                     )
@@ -206,17 +190,11 @@ fun ReservationScreen(
                             modifier = Modifier.weight(1f),
                             isReserved = allCourts[it + 2].count == allCourts[it + 2].maxCount,
                             onClick = {
-                                selectedCourt = when (it + 3) {
-                                    3 -> CourtNumberModel.THREE
-                                    else -> CourtNumberModel.FOUR
-                                }
+                                selectedCourt = setSelectedCourt(it + 3)
                                 reservationViewModel.reserveCourt(selectedCourt!!)
                             },
                             onLongClick = {
-                                selectedCourt = when (it + 3) {
-                                    3 -> CourtNumberModel.THREE
-                                    else -> CourtNumberModel.FOUR
-                                }
+                                selectedCourt = setSelectedCourt(it + 3)
                                 showDialog = true
                             }
                         )
@@ -227,6 +205,13 @@ fun ReservationScreen(
             Spacer(modifier = Modifier.height(15.dp))
         }
     }
+}
+
+private fun setSelectedCourt(courtId: Int): CourtNumberModel = when (courtId) {
+    1 -> CourtNumberModel.FIRST
+    2 -> CourtNumberModel.SECOND
+    3 -> CourtNumberModel.THREE
+    else -> CourtNumberModel.FOUR
 }
 
 @Preview
