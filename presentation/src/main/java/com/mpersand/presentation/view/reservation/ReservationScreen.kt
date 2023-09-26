@@ -120,57 +120,65 @@ fun ReservationScreen(
                             checkReserved = { row ->
                                 val index = (column + 1) * (row + 1)
                                 allCourts[index].count == allCourts[index].maxCount
-                            }
-                        ) { row ->
-                            val (xIndex, yIndex) = (row + 1) to (column + 1)
-                            when (xIndex * yIndex) {
-                                1 -> CourtNumberModel.FIRST
-                                2 -> CourtNumberModel.SECOND
-                                3 -> CourtNumberModel.THREE
-                                4 -> CourtNumberModel.FOUR
-                            }
-                            reservationViewModel.reserveCourt(selectedCourt!!)
-                        }
+                            },
+                            onClick = { row ->
+                                val (xIndex, yIndex) = (row + 1) to (column + 1)
+                                when (xIndex * yIndex) {
+                                    1 -> CourtNumberModel.FIRST
+                                    2 -> CourtNumberModel.SECOND
+                                    3 -> CourtNumberModel.THREE
+                                    4 -> CourtNumberModel.FOUR
+                                }
+                                reservationViewModel.reserveCourt(selectedCourt!!)
+                            },
+                            onLongClick = { showDialog = true }
+                        )
                     }
                 }
                 DayOfWeekType.TUE, DayOfWeekType.THU -> {
                     repeat(4) { index ->
                         BadmintonHalfCourt(
                             modifier = Modifier.weight(1f),
-                            isReserved = allCourts[index].count == allCourts[index].maxCount
-                        ) {
-                            selectedCourt = when (index + 1) {
-                                1 -> CourtNumberModel.FIRST
-                                2 -> CourtNumberModel.SECOND
-                                3 -> CourtNumberModel.THREE
-                                else -> CourtNumberModel.FOUR
-                            }
-                            reservationViewModel.reserveCourt(selectedCourt!!)
-                        }
+                            isReserved = allCourts[index].count == allCourts[index].maxCount,
+                            onClick = {
+                                selectedCourt = when (index + 1) {
+                                    1 -> CourtNumberModel.FIRST
+                                    2 -> CourtNumberModel.SECOND
+                                    3 -> CourtNumberModel.THREE
+                                    else -> CourtNumberModel.FOUR
+                                }
+                                reservationViewModel.reserveCourt(selectedCourt!!)
+                            },
+                            onLongClick = { showDialog = true }
+                        )
                     }
                 }
                 DayOfWeekType.FRI -> {
                     BasketballHalfCourt(
                         modifier = Modifier.weight(4f),
-                        checkReserved = { allCourts[it].count == allCourts[it].maxCount }
-                    ) {
-                        selectedCourt = when (it + 1) {
-                            1 -> CourtNumberModel.FIRST
-                            else -> CourtNumberModel.SECOND
-                        }
-                        reservationViewModel.reserveCourt(selectedCourt!!)
-                    }
+                        checkReserved = { allCourts[it].count == allCourts[it].maxCount },
+                        onClick = {
+                            selectedCourt = when (it + 1) {
+                                1 -> CourtNumberModel.FIRST
+                                else -> CourtNumberModel.SECOND
+                            }
+                            reservationViewModel.reserveCourt(selectedCourt!!)
+                        },
+                        onLongClick = { showDialog = true }
+                    )
                     repeat(2) {
                         BadmintonHalfCourt(
                             modifier = Modifier.weight(1f),
-                            isReserved = allCourts[it + 2].count == allCourts[it + 2].maxCount
-                        ) {
-                            selectedCourt = when (it + 3) {
-                                3 -> CourtNumberModel.THREE
-                                else -> CourtNumberModel.FOUR
-                            }
-                            reservationViewModel.reserveCourt(selectedCourt!!)
-                        }
+                            isReserved = allCourts[it + 2].count == allCourts[it + 2].maxCount,
+                            onClick = {
+                                selectedCourt = when (it + 3) {
+                                    3 -> CourtNumberModel.THREE
+                                    else -> CourtNumberModel.FOUR
+                                }
+                                reservationViewModel.reserveCourt(selectedCourt!!)
+                            },
+                            onLongClick = { showDialog = true }
+                        )
                     }
                 }
                 else -> {} // TODO: 예약 가능한 요일이 아닌경우
