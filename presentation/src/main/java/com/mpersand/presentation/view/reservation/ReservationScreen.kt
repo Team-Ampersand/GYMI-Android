@@ -135,15 +135,24 @@ fun ReservationScreen(
                             },
                             onClick = { row ->
                                 val (xIndex, yIndex) = (row + 1) to (column + 1)
-                                when (xIndex * yIndex) {
+                                selectedCourt = when (xIndex * yIndex) {
                                     1 -> CourtNumberModel.FIRST
                                     2 -> CourtNumberModel.SECOND
                                     3 -> CourtNumberModel.THREE
-                                    4 -> CourtNumberModel.FOUR
+                                    else -> CourtNumberModel.FOUR
                                 }
                                 reservationViewModel.reserveCourt(selectedCourt!!)
                             },
-                            onLongClick = { showDialog = true }
+                            onLongClick = { row ->
+                                val (xIndex, yIndex) = (row + 1) to (column + 1)
+                                selectedCourt = when (xIndex * yIndex) {
+                                    1 -> CourtNumberModel.FIRST
+                                    2 -> CourtNumberModel.SECOND
+                                    3 -> CourtNumberModel.THREE
+                                    else -> CourtNumberModel.FOUR
+                                }
+                                showDialog = true
+                            }
                         )
                     }
                 }
@@ -161,7 +170,15 @@ fun ReservationScreen(
                                 }
                                 reservationViewModel.reserveCourt(selectedCourt!!)
                             },
-                            onLongClick = { showDialog = true }
+                            onLongClick = {
+                                selectedCourt = when (index + 1) {
+                                    1 -> CourtNumberModel.FIRST
+                                    2 -> CourtNumberModel.SECOND
+                                    3 -> CourtNumberModel.THREE
+                                    else -> CourtNumberModel.FOUR
+                                }
+                                showDialog = true
+                            }
                         )
                     }
                 }
@@ -176,7 +193,13 @@ fun ReservationScreen(
                             }
                             reservationViewModel.reserveCourt(selectedCourt!!)
                         },
-                        onLongClick = { showDialog = true }
+                        onLongClick = {
+                            selectedCourt = when (it + 1) {
+                                1 -> CourtNumberModel.FIRST
+                                else -> CourtNumberModel.SECOND
+                            }
+                            showDialog = true
+                        }
                     )
                     repeat(2) {
                         BadmintonHalfCourt(
@@ -189,7 +212,13 @@ fun ReservationScreen(
                                 }
                                 reservationViewModel.reserveCourt(selectedCourt!!)
                             },
-                            onLongClick = { showDialog = true }
+                            onLongClick = {
+                                selectedCourt = when (it + 3) {
+                                    3 -> CourtNumberModel.THREE
+                                    else -> CourtNumberModel.FOUR
+                                }
+                                showDialog = true
+                            }
                         )
                     }
                 }
