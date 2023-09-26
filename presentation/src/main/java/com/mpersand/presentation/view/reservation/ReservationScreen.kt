@@ -57,12 +57,24 @@ fun ReservationScreen(
     }
 
     if (showDialog) {
+        val court = uiState.allCourts.single { it.courtNumber == selectedCourt!!.name }
         GYMIDialog(onDismissRequest = { showDialog = false }) {
             CourtModal(
-                courtName = "",  /* TODO: 코트 상세 받아와서 표시 */
+                courtName = court.name,
                 imageUrl = "",
-                personnel = "",  /* TODO: 코트 상세 받아와서 표시 */
-                description = "이미 예약된 코트입니다.\n규칙을 어겼다면 신고해주세요!",
+                personnel = if (court.count > 0) {
+                    court.reservationUsers.joinToString(
+                        separator = ", ",
+                        transform = { it.name }
+                    )
+                } else {
+                    "미정"
+                },
+                description = if (court.count > 0) {
+                    "이미 예약된 코트입니다.\n규칙을 어겼다면 신고해주세요!"
+                } else {
+                    "예약되지 않은 코트입니다.\n코트를 이용하고 싶으시면 예약해주세요!"
+                },
                 buttonType = CourtButtonType.Cancel,
                 onButtonClick = {
                     reserved?.let { reservationViewModel.cancelReservation(it) }
