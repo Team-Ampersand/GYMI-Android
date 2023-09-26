@@ -12,7 +12,8 @@ import com.mpersand.gymi_components.component.court.GYMIBasketballCourt
 fun ColumnScope.BasketballHalfCourt(
     modifier: Modifier = Modifier,
     checkReserved: (Int) -> Boolean = { false },
-    onClick: (Int) -> Unit
+    onClick: (Int) -> Unit,
+    onLongClick: (Int) -> Unit
 ) {
     Row(modifier = modifier) {
         repeat(2) {
@@ -24,7 +25,8 @@ fun ColumnScope.BasketballHalfCourt(
                         if (it % 2 != 0) rotationY = 180f
                     },
                 isReserved = checkReserved(it),
-                onClick = { onClick(it) }
+                onClick = { onClick(it) },
+                onLongClick = { onLongClick(it) }
             )
         }
     }
