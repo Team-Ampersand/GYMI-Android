@@ -130,17 +130,17 @@ fun ReservationScreen(
                         BasketballHalfCourt(
                             modifier = Modifier.weight(1f),
                             checkReserved = { row ->
-                                val index = (column + 1) * (row + 1)
-                                allCourts[index].count == allCourts[index].maxCount
+                                val courtIdx = calculateCourtNumber(row + 1, column + 1)
+                                allCourts[courtIdx].count == allCourts[courtIdx].maxCount
                             },
                             onClick = { row ->
-                                val (xIndex, yIndex) = (row + 1) to (column + 1)
-                                selectedCourt = setSelectedCourt(xIndex * yIndex)
+                                val courtIdx = calculateCourtNumber(row + 1, column + 1)
+                                selectedCourt = setSelectedCourt(courtIdx)
                                 reservationViewModel.reserveCourt(selectedCourt!!)
                             },
                             onLongClick = { row ->
-                                val (xIndex, yIndex) = (row + 1) to (column + 1)
-                                selectedCourt = setSelectedCourt(xIndex * yIndex)
+                                val courtIdx = calculateCourtNumber(row + 1, column + 1)
+                                selectedCourt = setSelectedCourt(courtIdx)
                                 showDialog = true
                             }
                         )
@@ -213,6 +213,8 @@ private fun setSelectedCourt(courtId: Int): CourtNumberModel = when (courtId) {
     3 -> CourtNumberModel.THREE
     else -> CourtNumberModel.FOUR
 }
+
+private fun calculateCourtNumber(xIndex: Int, yIndex: Int) = (xIndex - 1) * 2 + yIndex
 
 @Preview
 @Composable
