@@ -14,8 +14,6 @@ import com.mpersand.gymi_components.theme.GYMITheme
 import com.mpersand.gymi_components.theme.GYMITypography
 import com.mpersand.presentation.util.DayOfWeekType
 import com.mpersand.presentation.util.getDayOfWeekType
-import com.mpersand.presentation.view.component.BadmintonHalfCourt
-import com.mpersand.presentation.view.component.BasketballHalfCourt
 
 @Composable
 fun MainScreen(
@@ -35,18 +33,18 @@ fun MainScreen(
         when (getDayOfWeekType()) {
             DayOfWeekType.MON, DayOfWeekType.WED -> {
                 repeat(2) {
-                    BasketballHalfCourt(modifier = Modifier.weight(1f)) {}
+//                    BasketballHalfCourt(modifier = Modifier.weight(1f)) {}
                 }
             }
             DayOfWeekType.TUE, DayOfWeekType.THU -> {
                 repeat(4) {
-                    BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
+//                    BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
                 }
             }
             DayOfWeekType.FRI -> {
-                BasketballHalfCourt(modifier = Modifier.weight(4f)) {}
+//                BasketballHalfCourt(modifier = Modifier.weight(4f)) {}
                 repeat(2) {
-                    BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
+//                    BadmintonHalfCourt(modifier = Modifier.weight(1f)) {}
                 }
             }
             else -> {} // TODO: 예약 가능한 요일이 아닌경우
