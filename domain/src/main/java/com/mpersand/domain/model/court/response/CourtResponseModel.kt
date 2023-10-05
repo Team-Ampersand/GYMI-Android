@@ -1,5 +1,9 @@
 package com.mpersand.domain.model.court.response
 
+data class CourtListResponseModel(
+    val courtList: List<CourtResponseModel>
+)
+
 data class CourtResponseModel(
     val id: Long,
     val name: String,
@@ -8,12 +12,15 @@ data class CourtResponseModel(
     val courtNumber: String,
     val week: String,
     val dayPeriod: String,
-    val reservationUsers: List<ReservationUserModel>
+    val reservationUsers: List<ReservationsModel>,
+    val activity: String
 )
 
-data class ReservationUserModel(
+data class ReservationsModel(
     val id: String,
-    val name: String,
-    val classNum: String
+    val nickname: String,
+    val grade: Int,
+    val classNum: Int,
+    val number: Int
 )
 
