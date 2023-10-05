@@ -1,7 +1,8 @@
 package com.mpersand.data.remote.datasource.court
 
+import com.mpersand.data.remote.model.court.response.CourtListResponse
 import com.mpersand.data.remote.model.court.response.CourtResponse
-import com.mpersand.data.remote.model.court.response.ReservationUser
+import com.mpersand.data.remote.model.court.response.Reservations
 import com.mpersand.data.remote.network.CourtApi
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.Runs
@@ -33,7 +34,7 @@ class CourtDataSourceTest : BehaviorSpec() {
             }
 
             When("코트 id를 통해 특정 코트를 가져온다") {
-                coEvery { courtApi.getCourtById(1) } returns allCourts.single { it.id == 1L }
+                coEvery { courtApi.getCourtById(1) } returns allCourts.courtList.single { it.id == 1L }
                 dataSource.getCourtById(1)
                 Then("코트 id에 맞는 특정 코트가 반환된다") {
                     coVerify { dataSource.getCourtById(1) }
@@ -43,18 +44,20 @@ class CourtDataSourceTest : BehaviorSpec() {
     }
 
     companion object {
-        private val allCourts = listOf(
-            CourtResponse(
-                id = 1,
-                name = "1번 코트",
-                count = 3,
-                maxCount = 8,
-                courtNumber = "FIRST",
-                week = "MONDAY",
-                dayPeriod = "LUNCH",
-                reservationUsers = listOf(
-                    ReservationUser("1", "박성현", "3208"),
-                    ReservationUser("2", "조현서", "3117")
+        private val allCourts = CourtListResponse(
+            listOf(
+                CourtResponse(
+                    id = 1,
+                    name = "1번 코트",
+                    count = 3,
+                    maxCount = 8,
+                    courtNumber = "FIRST",
+                    week = "MONDAY",
+                    dayPeriod = "LUNCH",
+                    reservations = listOf(
+                        Reservations(id = "test", nickname = "test", grade = 1, classNum = 1, number = 1)
+                    ),
+                    activity = "배드민턴"
                 )
             )
         )
