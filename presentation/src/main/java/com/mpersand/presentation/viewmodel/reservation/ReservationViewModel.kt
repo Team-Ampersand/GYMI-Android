@@ -2,7 +2,7 @@ package com.mpersand.presentation.viewmodel.reservation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mpersand.domain.model.court.response.CourtResponseModel
+import com.mpersand.domain.model.court.response.CourtListResponseModel
 import com.mpersand.domain.model.reservation.request.CourtNumberModel
 import com.mpersand.domain.usecase.court.GetAllCourtsUseCase
 import com.mpersand.domain.usecase.reservation.CancelReservationUseCase
@@ -74,7 +74,7 @@ class ReservationViewModel @Inject constructor(
 }
 
 data class ReservationState(
-    val allCourts: List<CourtResponseModel> = emptyList(),
+    val allCourts: CourtListResponseModel? = null,
     val reserved: CourtNumberModel? = null,
     val loading: Boolean = true,
     val error: String? = null

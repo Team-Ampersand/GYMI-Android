@@ -2,6 +2,7 @@ package com.mpersand.presentation.viewmodel.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mpersand.domain.model.court.response.CourtListResponseModel
 import com.mpersand.domain.model.court.response.CourtResponseModel
 import com.mpersand.domain.model.declaration.request.DeclarationRequestModel
 import com.mpersand.domain.usecase.court.GetAllCourtsUseCase
@@ -60,7 +61,7 @@ class MainViewModel @Inject constructor(
 
 data class MainState(
     val isDeclared: Boolean = false,
-    val allCourts: List<CourtResponseModel> = emptyList(),
+    val allCourts: CourtListResponseModel? = null,
     val courtDetail: CourtResponseModel? = null,
     val loading: Boolean = true,
     val error: String? = null
