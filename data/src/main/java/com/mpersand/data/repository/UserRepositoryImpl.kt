@@ -7,5 +7,5 @@ import javax.inject.Inject
 class UserRepositoryImpl @Inject constructor(
     private val userDataSource: UserDataSource
 ): UserRepository {
-    override fun getMyReservedCourt(): String = userDataSource.getMyReservedCourt()
+    override suspend fun getMyReservedCourt(): String = userDataSource.getMyReservedCourt()
 }

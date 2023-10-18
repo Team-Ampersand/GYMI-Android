@@ -1,5 +1,5 @@
 package com.mpersand.domain.repository
 
 interface UserRepository {
-    fun getMyReservedCourt(): String
+    suspend fun getMyReservedCourt(): String
 }

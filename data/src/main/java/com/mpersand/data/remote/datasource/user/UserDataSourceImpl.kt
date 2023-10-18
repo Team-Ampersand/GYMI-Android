@@ -6,5 +6,5 @@ import javax.inject.Inject
 class UserDataSourceImpl @Inject constructor(
     private val userApi: UserApi
 ): UserDataSource {
-    override fun getMyReservedCourt(): String = userApi.getMyReservedCourt()
+    override suspend fun getMyReservedCourt(): String = userApi.getMyReservedCourt()
 }
