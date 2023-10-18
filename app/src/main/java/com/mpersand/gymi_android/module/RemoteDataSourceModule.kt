@@ -10,6 +10,8 @@ import com.mpersand.data.remote.datasource.notice.NoticeDataSource
 import com.mpersand.data.remote.datasource.notice.NoticeDataSourceImpl
 import com.mpersand.data.remote.datasource.reservation.ReservationDataSource
 import com.mpersand.data.remote.datasource.reservation.ReservationDataSourceImpl
+import com.mpersand.data.remote.datasource.user.UserDataSource
+import com.mpersand.data.remote.datasource.user.UserDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -32,4 +34,7 @@ interface RemoteDataSourceModule {
 
     @Binds
     fun bindsReservationDataSource(reservationDataSourceImpl: ReservationDataSourceImpl): ReservationDataSource
+
+    @Binds
+    fun bindsUserDataSource(userDataSourceImpl: UserDataSourceImpl): UserDataSource
 }
