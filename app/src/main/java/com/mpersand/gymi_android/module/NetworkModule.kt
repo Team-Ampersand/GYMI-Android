@@ -6,6 +6,7 @@ import com.mpersand.data.remote.network.CourtApi
 import com.mpersand.data.remote.network.DeclarationApi
 import com.mpersand.data.remote.network.NoticeApi
 import com.mpersand.data.remote.network.ReservationApi
+import com.mpersand.data.remote.network.UserApi
 import com.mpersand.data.remote.util.RequestInterceptor
 import com.mpersand.gymi_android.BuildConfig
 import com.squareup.moshi.Moshi
@@ -89,4 +90,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideReservationApi(retrofit: Retrofit): ReservationApi = retrofit.create(ReservationApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserApi(retrofit: Retrofit): UserApi = retrofit.create(UserApi::class.java)
 }
