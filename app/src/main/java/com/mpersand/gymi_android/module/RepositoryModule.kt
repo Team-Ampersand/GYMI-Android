@@ -5,11 +5,13 @@ import com.mpersand.data.repository.CourtRepositoryImpl
 import com.mpersand.data.repository.DeclarationRepositoryImpl
 import com.mpersand.data.repository.NoticeRepositoryImpl
 import com.mpersand.data.repository.ReservationRepositoryImpl
+import com.mpersand.data.repository.UserRepositoryImpl
 import com.mpersand.domain.repository.AuthRepository
 import com.mpersand.domain.repository.CourtRepository
 import com.mpersand.domain.repository.DeclarationRepository
 import com.mpersand.domain.repository.NoticeRepository
 import com.mpersand.domain.repository.ReservationRepository
+import com.mpersand.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -32,4 +34,7 @@ interface RepositoryModule {
 
     @Binds
     fun bindsReservationRepository(reservationRepositoryImpl: ReservationRepositoryImpl): ReservationRepository
+
+    @Binds
+    fun bindsUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository
 }
