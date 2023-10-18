@@ -7,6 +7,7 @@ import com.mpersand.domain.model.reservation.request.CourtNumberModel
 import com.mpersand.domain.usecase.court.GetAllCourtsUseCase
 import com.mpersand.domain.usecase.reservation.CancelReservationUseCase
 import com.mpersand.domain.usecase.reservation.ReserveCourtUseCase
+import com.mpersand.domain.usecase.user.GetMyReservedCourtUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -20,7 +21,8 @@ import javax.inject.Inject
 class ReservationViewModel @Inject constructor(
     private val reserveCourtUseCase: ReserveCourtUseCase,
     private val cancelReservationUseCase: CancelReservationUseCase,
-    private val getAllCourtsUseCase: GetAllCourtsUseCase
+    private val getAllCourtsUseCase: GetAllCourtsUseCase,
+    private val getMyReservedCourtUseCase: GetMyReservedCourtUseCase
 ) : ContainerHost<ReservationState, ReservationSideEffect>, ViewModel() {
     override val container = container<ReservationState, ReservationSideEffect>(ReservationState())
     fun reserveCourt(courtNumberModel: CourtNumberModel) = intent {
@@ -66,6 +68,19 @@ class ReservationViewModel @Inject constructor(
             getAllCourtsUseCase()
                 .onSuccess {
                     reduce { state.copy(allCourts = it) }
+                }.onFailure {
+                    reduce { state.copy(error = it.message) }
+                }
+        }
+    }
+
+    fun getMyReservedCourt() = intent {
+        viewModelScope.launch {
+            getMyReservedCourtUseCase()
+                .onSuccess {
+                    reduce {
+                        state.copy(reserved = CourtNumberModel.values().find { court -> court.name == it })
+                    }
                 }.onFailure {
                     reduce { state.copy(error = it.message) }
                 }
