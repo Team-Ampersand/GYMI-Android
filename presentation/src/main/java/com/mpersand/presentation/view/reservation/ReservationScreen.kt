@@ -42,7 +42,7 @@ fun ReservationScreen(
     reservationViewModel: ReservationViewModel = hiltViewModel()
 ) {
     val uiState by reservationViewModel.collectAsState()
-    val reserved by remember { mutableStateOf(uiState.reserved) } /* TODO: 예약 현황에 따라 처리 */
+    val reserved by remember { mutableStateOf(uiState.reserved) }
     val coroutineScope = rememberCoroutineScope()
     val snackBarHostState = remember { SnackbarHostState() }
 
@@ -54,6 +54,7 @@ fun ReservationScreen(
 
     LaunchedEffect(Unit) {
         reservationViewModel.getAllCourts()
+        reservationViewModel.getMyReservedCourt()
     }
 
     if (showDialog) {
